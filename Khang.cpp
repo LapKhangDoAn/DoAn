@@ -90,11 +90,11 @@ void huyDS(List &DSSP)
 void bosungSP(List &DSSP)
 {
 	Node* p;
-	p = DSSP.pHead->pnext;
-	double x;
-	cout << "Nhap gia san pham muon bo sung hang:";
-	cin >> x;
-	while (p != NULL && p->infor.Gia_Ban != x)
+	p = DSSP.pHead;
+	char x[20];
+	cout << "Nhap ten san pham muon bo sung hang:";
+	cin.getline(x, 20);
+	while (p != NULL && strcmp(p->infor.Ten_sp,x) != 0)
 		p = p->pnext;
 	if (p != NULL)
 	{
@@ -104,8 +104,5 @@ void bosungSP(List &DSSP)
 		p->infor.Sl = p->infor.Sl + sl;
 	}
 	else
-	{
-
-	}
 		cout << "Cua hang chua co mat hang nay!";
 }

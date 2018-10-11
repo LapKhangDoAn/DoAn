@@ -106,3 +106,72 @@ void bosungSP(List &DSSP)
 	else
 		cout << "Cua hang chua co mat hang nay!";
 }
+
+void timkiemSP(List DSSP)
+{
+	cout << "Danh muc tim kiem:" << endl;
+	cout << "1. Tim kiem theo ten san pham" << endl;
+	cout << "2. Tim kiem theo ma san pham" << endl;
+	cout << "3. Tim kiem theo khoang gia" << endl;
+	int chon = 0;
+	cin >> chon;
+	if (chon == 1)
+	{
+		cin.ignore();
+		char x[20];
+		cout << "Nhap ten san pham can tim:";
+		cin.getline(x, 20);
+		Node* p;
+		p = DSSP.pHead;  
+		while (p != NULL && strcmp(p->infor.Ten_sp, x) != 0)
+			p = p->pnext;  
+		if (p != NULL)
+		{
+			int w = 130;
+			cout << "Thong tin san pham:" << endl;
+			cout << setw(w / 7) << left << "Ten san pham";
+			cout << setw(w / 7) << "Ma san pham" << setw(w / 7) << "Gia ban san pham" << setw(w / 7) << "So luong" << setw(w / 7) << "Nha cung cap" << setw(w / 7) << "Ngay san xuat" << setw(w / 7) << "Han su dung" << endl;
+			cout << setw(w / 7) << left << p->infor.Ten_sp << setw(w / 7) << p->infor.Ma << setw(w / 7) << p->infor.Gia_Ban << setw(w / 7) << p->infor.Sl << setw(w / 7) << p->infor.Nha_cc << setw(w / 7) << p->infor.Ngay_sx << setw(w / 7) << p->infor.Han_sd << endl;
+		}
+	}
+	if (chon == 2)
+	{
+		cin.ignore();
+		char x[20];
+		cout << "Nhap ma san pham can tim:";
+		cin.getline(x, 20);
+		Node* p;
+		p = DSSP.pHead;
+		while (p != NULL && strcmp(p->infor.Ma, x) != 0)
+			p = p->pnext;
+		if (p != NULL)
+		{
+			int w = 130;
+			cout << "Thong tin san pham:" << endl;
+			cout << setw(w / 7) << left << "Ten san pham";
+			cout << setw(w / 7) << "Ma san pham" << setw(w / 7) << "Gia ban san pham" << setw(w / 7) << "So luong" << setw(w / 7) << "Nha cung cap" << setw(w / 7) << "Ngay san xuat" << setw(w / 7) << "Han su dung" << endl;
+			cout << setw(w / 7) << left << p->infor.Ten_sp << setw(w / 7) << p->infor.Ma << setw(w / 7) << p->infor.Gia_Ban << setw(w / 7) << p->infor.Sl << setw(w / 7) << p->infor.Nha_cc << setw(w / 7) << p->infor.Ngay_sx << setw(w / 7) << p->infor.Han_sd << endl;
+		}
+	}
+	if (chon == 3)
+	{
+		cin.ignore();
+		double mingia, maxgia;
+		cout << "Nhap gia thap nhat:";
+		cin >> mingia;
+		cout << "Nhap gia cao nhat:";
+		cin >> maxgia;
+		Node* p;
+		p = DSSP.pHead;
+		while (p != NULL && (mingia > p->infor.Gia_Ban || p->infor.Gia_Ban > maxgia))
+			p = p->pnext;
+		if (p != NULL)
+		{
+			int w = 130;
+			cout << "Thong tin san pham:" << endl;
+			cout << setw(w / 7) << left << "Ten san pham";
+			cout << setw(w / 7) << "Ma san pham" << setw(w / 7) << "Gia ban san pham" << setw(w / 7) << "So luong" << setw(w / 7) << "Nha cung cap" << setw(w / 7) << "Ngay san xuat" << setw(w / 7) << "Han su dung" << endl;
+			cout << setw(w / 7) << left << p->infor.Ten_sp << setw(w / 7) << p->infor.Ma << setw(w / 7) << p->infor.Gia_Ban << setw(w / 7) << p->infor.Sl << setw(w / 7) << p->infor.Nha_cc << setw(w / 7) << p->infor.Ngay_sx << setw(w / 7) << p->infor.Han_sd << endl;
+		}
+	}
+}

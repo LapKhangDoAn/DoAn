@@ -9,3 +9,4 @@ void huyDS(List &DSSP);
 Node* searchNode(struct SanPham x, List myList);
 void bosungSP(List &DSSP);
 void timkiemSP(List DSSP);
+void muaSP(List &DSSP);

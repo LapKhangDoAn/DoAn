@@ -175,3 +175,31 @@ void timkiemSP(List DSSP)
 		}
 	}
 }
+
+void muaSP(List &DSSP)
+{
+	cin.ignore();
+	char x[20];
+	cout << "Nhap ten san pham can tim:";
+	cin.getline(x, 20);
+	Node* p;
+	p = DSSP.pHead;
+	while (p != NULL && strcmp(p->infor.Ten_sp, x) != 0)
+		p = p->pnext;
+	if (p != NULL)
+	{
+		int sl = 0, conlai = 0;
+		cout << "Nhap so luong muon mua:";
+		cin >> sl;
+		conlai = p->infor.Sl - sl;
+		if (conlai <= 0)
+			cout << "Khong du so luong, cua hang chi con lai " << p->infor.Sl << " san pham nay!" << endl;
+		else
+		{
+			cout << "Mua thanh cong!" << endl;
+			p->infor.Sl = conlai;
+		}
+	}
+	else 
+		cout << "Cua hang chua co mat hang nay!" << endl;
+}

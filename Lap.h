@@ -1,3 +1,4 @@
+
 #include "pch.h"
 #include <stdio.h>
 #include <conio.h>
@@ -34,3 +35,8 @@ struct List
 
 void taoDS(List &DSSP);
 void inDS(List DSSP);
+void InThongTin(List DSSP);
+void KiemTra(List DSSP);
+int RemoveX(List&DSSP, char x[]);
+void RemoveAfter(List &DSSP);
+void RemoveHead(List&DSSP);

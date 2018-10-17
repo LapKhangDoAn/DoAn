@@ -40,3 +40,6 @@ void TimKiem(List DSSP);
 int RemoveX(List&DSSP, char x[]);
 void RemoveAfter(List &DSSP);
 void RemoveHead(List&DSSP);
+void addHead(List&DSSP, SanPham x, Node *p);
+Node* searchNode(List &DSSP);
+void InsertAfter(List&DSSP, Node *p, Node *q, SanPham x);

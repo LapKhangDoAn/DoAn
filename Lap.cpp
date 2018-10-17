@@ -6,26 +6,43 @@ void taoDS(List &DSSP)
 	DSSP.pHead = NULL;
 	DSSP.pTail = NULL;
 }
-
-//void inDS(List DSSP)
-//{
-//	int w = 130;
-//	for (int i = 0; i < w; i++) cout << "=";
-//	cout << endl;
-//	cout << setw((w - 20) / 2) << left << " " << "THONG TIN CAC SAN PHAM" << endl;
-//	for (int i = 0; i < w; i++) cout << "=";
-//	cout << endl;
-//	cout << setw(w / 7) << left << "Ten san pham";
-//	cout << setw(w / 7) << "Ma san pham" << setw(w / 7) << "Gia ban san pham" << setw(w / 7) << "So luong" << setw(w / 7) << "Nha cung cap" << setw(w / 7) << "Ngay san xuat" << setw(w / 7) << "Han su dung" << endl;
-//	for (int i = 0; i < w; i++) cout << "=";
-//	cout << endl;
-//	Node *p = DSSP.pHead;
-//	while (p != NULL)
-//	{
-//		cout << setw(w / 7) << left << p->infor.Ten_sp << setw(w / 7) << p->infor.Ma << setw(w / 7) << p->infor.Gia_Ban << setw(w / 7) << p->infor.Sl << setw(w / 7) << p->infor.Nha_cc << setw(w / 7) << p->infor.Ngay_sx << setw(w / 7) << p->infor.Han_sd << endl;
-//		p = p->pnext;
-//	}
-//}
+void InsertAfter(List&DSSP, Node *p, Node *q, SanPham x)
+{
+	if (p != NULL)
+	{
+		q->pnext = p->pnext;
+		p->pnext = q;
+		if (DSSP.pTail == p)
+			DSSP.pTail = q;
+	}
+	else
+		addHead(DSSP, x, q);
+}
+Node* searchNode(List &DSSP)
+{
+	Node* p;
+	p = DSSP.pHead->pnext;
+	cin.ignore();
+	char a[100];
+	cout << "Nhap ma san pham A de them san pham B vao sau :";
+	cin.getline(a, 100);
+	while (p != NULL && strcmp(a, p->infor.Ma) != 0)
+		p = p->pnext;
+	return p;
+}
+void addHead(List&DSSP, SanPham x, Node *p)
+{
+	if (DSSP.pHead == NULL)
+	{
+		DSSP.pHead = p;
+		DSSP.pTail = p;
+	}
+	else
+	{
+		p->pnext = DSSP.pHead;
+		DSSP.pHead = p;
+	}
+}
 // Xóa Sản Phẩm
 int RemoveX(List&DSSP, char x[])
 {

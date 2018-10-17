@@ -89,55 +89,80 @@ void RemoveHead(List&DSSP)
 	DSSP.pHead = DSSP.pHead->pnext;
 	delete p;
 }
-// Kiem Tra Trang Thai San Pham
-void KiemTra(List DSSP)
+void TimKiem(List DSSP)
 {
 	int w = 130;
 	Node *p;
 	SanPham x;
 	int dem = 0;
-	int chon = 0;
-	cout << "1.Kiem Tra San Pham Theo Ten " << endl;
-	cout << "2.Kiem Tra San Pham Theo Ma" << endl;
+	int chon;
+	cout << "Danh muc tim kiem:" << endl;
+	cout << "1. Tim kiem theo ten san pham" << endl;
+	cout << "2. Tim kiem theo ma san pham" << endl;
+	cout << "3. Tim kiem theo khoang gia" << endl;
 	cin >> chon;
 	if (chon == 1)
 	{
 		cin.ignore();
-		cout << "Nhap Ten San Pham Can Kiem Tra:";
+		cout << "Nhap Ten San Pham Can Tim Kiem:";
 		cin.getline(x.Ten_sp, 100);
 		p = DSSP.pHead;
 		while (p != NULL)
 		{
 			if (strcmp(x.Ten_sp, p->infor.Ten_sp) == 0)
 			{
-				inDS(DSSP);
-				cout << setw(w / 7) << left << p->infor.Ten_sp << setw(w / 7) << p->infor.Ma << setw(w / 7) << p->infor.Gia_Ban << setw(w / 7) << p->infor.Sl << setw(w / 7) << p->infor.Nha_cc << setw(w / 7) << p->infor.Ngay_sx << setw(w / 7) << p->infor.Han_sd << endl;
 				dem++;
+				if (dem == 1)
+					inDS(DSSP);
+				cout << setw(w / 7) << left << p->infor.Ten_sp << setw(w / 7) << p->infor.Ma << setw(w / 7) << p->infor.Gia_Ban << setw(w / 7) << p->infor.Sl << setw(w / 7) << p->infor.Nha_cc << setw(w / 7) << p->infor.Ngay_sx << setw(w / 7) << p->infor.Han_sd << endl;
 			}
 			p = p->pnext;
 		}
 		if (dem == 0)
-			cout << "Khong Co San Pham Nao";
+			cout << "San Pham Can Tim Khong Co Trong Cua Hang";
 	}
 	if (chon == 2)
 	{
 		cin.ignore();
-		cout << "Nhap Ma San Pham Can Kiem Tra:";
+		cout << "Nhap Ma San Pham Can Tim Kiem:";
 		cin.getline(x.Ma, 100);
 		p = p = DSSP.pHead;
 		while (p != NULL)
 		{
 			if (strcmp(x.Ma, p->infor.Ma) == 0)
 			{
-				inDS(DSSP);
-				cout << setw(w / 7) << left << p->infor.Ten_sp << setw(w / 7) << p->infor.Ma << setw(w / 7) << p->infor.Gia_Ban << setw(w / 7) << p->infor.Sl << setw(w / 7) << p->infor.Nha_cc << setw(w / 7) << p->infor.Ngay_sx << setw(w / 7) << p->infor.Han_sd << endl;
 				dem++;
+				if (dem == 1)
+					inDS(DSSP);
+				cout << setw(w / 7) << left << p->infor.Ten_sp << setw(w / 7) << p->infor.Ma << setw(w / 7) << p->infor.Gia_Ban << setw(w / 7) << p->infor.Sl << setw(w / 7) << p->infor.Nha_cc << setw(w / 7) << p->infor.Ngay_sx << setw(w / 7) << p->infor.Han_sd << endl;
 			}
 			p = p->pnext;
 		}
 		if (dem == 0)
-			cout << "Khong Co San Pham Nao";
+			cout << "San Pham Can Tim Khong Co Trong Cua Hang";
 	}
+	if (chon == 3)
+	{
+		cin.ignore();
+		double mingia, maxgia;
+		cout << "Nhap gia thap nhat:";
+		cin >> mingia;
+		cout << "Nhap gia cao nhat:";
+		cin >> maxgia;
+		Node* p;
+		p = DSSP.pHead;
+		while (p != NULL && (mingia <= p->infor.Gia_Ban && p->infor.Gia_Ban <= maxgia))
+		{
+			dem++;
+			if (dem == 1)
+				inDS(DSSP);
+			cout << setw(w / 7) << left << p->infor.Ten_sp << setw(w / 7) << p->infor.Ma << setw(w / 7) << p->infor.Gia_Ban << setw(w / 7) << p->infor.Sl << setw(w / 7) << p->infor.Nha_cc << setw(w / 7) << p->infor.Ngay_sx << setw(w / 7) << p->infor.Han_sd << endl;
+			p = p->pnext;
+		}
+		if (dem == 0)
+			cout << "San Pham Can Tim Khong Co Trong Cua Hang" << endl;
+	}
+
 }
 void InThongTin(List DSSP)
 {

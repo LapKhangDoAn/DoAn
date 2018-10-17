@@ -36,7 +36,7 @@ struct List
 void taoDS(List &DSSP);
 void inDS(List DSSP);
 void InThongTin(List DSSP);
-void KiemTra(List DSSP);
+void TimKiem(List DSSP);
 int RemoveX(List&DSSP, char x[]);
 void RemoveAfter(List &DSSP);
 void RemoveHead(List&DSSP);

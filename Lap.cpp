@@ -1,10 +1,42 @@
 ﻿#include "pch.h"
-#include "Lap.h"
+#include "DoAn.h"
 
 void taoDS(List &DSSP)
 {
 	DSSP.pHead = NULL;
 	DSSP.pTail = NULL;
+}
+void ThemSP(List&DSSP)
+{
+	int them = 1;
+	while (them == 1)
+	{
+		cout << "Nhap thong tin san pham can them:" << endl;
+		SanPham x = nhapSP();
+		cout << "1.Them san pham vao dau danh sach" << endl;
+		cout << "2.Them san pham B vào sau san pham A co trong danh sach" << endl;
+		cout << "3.Them san pham vao cuoi danh sach" << endl;
+		int chon;
+		cin >> chon;
+		if (chon == 1)
+		{
+			Node *q = createNode(x);
+			addHead(DSSP, x, q);
+		}
+		if (chon == 2)
+		{
+			Node *q = createNode(x);
+			Node *p = searchNode(DSSP);
+			InsertAfter(DSSP, p, q, x);
+		}
+		if (chon == 3)
+		{
+			Node *q = createNode(x);
+			addTail(DSSP, x);
+		}
+		cout << "Nhap 1 de them tiep,0 de ket thuc:";
+		cin >> them;
+	}
 }
 void InsertAfter(List&DSSP, Node *p, Node *q, SanPham x)
 {

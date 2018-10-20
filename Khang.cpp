@@ -16,6 +16,20 @@ Node* createNode(SanPham x)
 	return p;
 }
 
+NodeSPDB* createNodeSPDB(SanPhamDaBan x)
+{
+	NodeSPDB *p;
+	p = new NodeSPDB;
+	if (p == NULL)
+	{
+		cout << "Khong tao Node thanh cong";
+		return NULL;
+	}
+	p->infor = x;
+	p->pnext = NULL;
+	return p;
+}
+
 void addTail(List &DSSP, SanPham x)
 {
 	Node *p = createNode(x);
@@ -29,6 +43,28 @@ void addTail(List &DSSP, SanPham x)
 		DSSP.pTail->pnext = p;
 		p->pnext = NULL;
 		DSSP.pTail = p;
+	}
+}
+
+void taoDSSPDB(ListSPDB &DSSPDB)
+{
+	DSSPDB.pHead = NULL;
+	DSSPDB.pTail = NULL;
+}
+
+void themSPDB(ListSPDB &DSSPDB, SanPhamDaBan x)
+{
+	NodeSPDB *p = createNodeSPDB(x);
+	if (DSSPDB.pHead == NULL)
+	{
+		DSSPDB.pHead = p;
+		DSSPDB.pTail = DSSPDB.pHead;
+	}
+	else
+	{
+		DSSPDB.pTail->pnext = p;
+		p->pnext = NULL;
+		DSSPDB.pTail = p;
 	}
 }
 
@@ -94,7 +130,7 @@ void bosungSP(List &DSSP)
 	char x[20];
 	cout << "Nhap ten san pham muon bo sung hang:";
 	cin.getline(x, 20);
-	while (p != NULL && strcmp(p->infor.Ten_sp, x) != 0)
+	while (p != NULL && strcmp(p->infor.Ten_sp,x) != 0)
 		p = p->pnext;
 	if (p != NULL)
 	{
@@ -107,31 +143,100 @@ void bosungSP(List &DSSP)
 		cout << "Cua hang chua co mat hang nay!";
 }
 
-
-void muaSP(List &DSSP)
+void muaSP(List &DSSP, ListSPDB &DSSPDB, ListSPDB &DSTongSPDB)
 {
-	cin.ignore();
-	char x[20];
-	cout << "Nhap ten san pham can tim:";
-	cin.getline(x, 20);
-	Node* p;
-	p = DSSP.pHead;
-	while (p != NULL && strcmp(p->infor.Ten_sp, x) != 0)
-		p = p->pnext;
-	if (p != NULL)
+	int mua = 1;
+	while (mua == 1)
 	{
-		int sl = 0, conlai = 0;
-		cout << "Nhap so luong muon mua:";
-		cin >> sl;
-		conlai = p->infor.Sl - sl;
-		if (conlai <= 0)
-			cout << "Khong du so luong, cua hang chi con lai " << p->infor.Sl << " san pham nay!" << endl;
-		else
+		cin.ignore();
+		char x[20];
+		cout << "Nhap ten san pham can tim:";
+		cin.getline(x, 20);
+		Node* p;
+		p = DSSP.pHead;
+		while (p != NULL && strcmp(p->infor.Ten_sp, x) != 0)
+			p = p->pnext;
+		if (p != NULL)
 		{
-			cout << "Mua thanh cong!" << endl;
-			p->infor.Sl = conlai;
+			int sl = 0, conlai = 0;
+			cout << "Nhap so luong muon mua:";
+			cin >> sl;
+			conlai = p->infor.Sl - sl;
+			if (conlai <= 0)
+				cout << "Khong du so luong, cua hang chi con lai " << p->infor.Sl << " san pham nay!" << endl;
+			else
+			{
+				cout << "Mua thanh cong!" << endl;
+				SanPhamDaBan x, tong;
+				strcpy_s(x.Ten_spdb, p->infor.Ten_sp);
+				x.Sldb = sl;
+				x.Gia_Bandb = p->infor.Gia_Ban;
+				themSPDB(DSSPDB, x);
+				strcpy_s(tong.Ten_spdb, p->infor.Ten_sp);
+				tong.Sldb = sl;
+				tong.Gia_Bandb = p->infor.Gia_Ban;
+				themSPDB(DSTongSPDB, tong);
+				p->infor.Sl = conlai;
+			}
 		}
+		else
+			cout << "Cua hang chua co mat hang nay!" << endl;
+		cout << "Nhap 1 de mua tiep, 0 de ket thuc" << endl;
+		cin >> mua;
 	}
-	else
-		cout << "Cua hang chua co mat hang nay!" << endl;
+	InThongTinSPDB(DSSPDB);
+	//InHoaDonMuaHang(DSSPDB);
+	huyDSSPDB(DSSPDB); 
+	//In hoa don xong danh sach nay se duoc huy de su dung cho lan mua khac
+	//Danh sach tong san pham da ban van giu lai de tinh tong doanh thu
+}
+
+void tongDoanhThu(ListSPDB DSTongSPDB)
+{
+	double tong = 0;
+	NodeSPDB *p;
+	p = DSTongSPDB.pHead;
+	while (p != NULL)
+	{
+		tong = tong + (p->infor.Sldb*p->infor.Gia_Bandb);
+		p = p->pnext;
+	}
+	cout << "Tong doanh thu cua hang: " << tong << endl;
+}
+
+void huyDSSPDB(ListSPDB &DSSPDB)
+{
+	NodeSPDB *p;
+	while (DSSPDB.pHead != NULL)
+	{
+		p = DSSPDB.pHead;
+		DSSPDB.pHead = p->pnext;
+		delete p;
+	}
+	DSSPDB.pTail = NULL;
+}
+
+void InThongTinSPDB(ListSPDB DSSPDB)
+{
+	int w = 130;
+	inDSSPDB(DSSPDB);
+	for (int i = 0; i < w; i++) cout << "=";
+	cout << endl;
+	NodeSPDB *p = DSSPDB.pHead;
+	while (p != NULL)
+	{
+		cout << setw(w / 7) << left << p->infor.Ten_spdb << setw(w / 7) << p->infor.Gia_Bandb << setw(w / 7) << p->infor.Sldb << endl;
+		p = p->pnext;
+	}
+}
+void inDSSPDB(ListSPDB DSSPSPDB)
+{
+	int w = 130;
+	for (int i = 0; i < w; i++) cout << "=";
+	cout << endl;
+	cout << setw((w - 20) / 2) << left << " " << "SAN PHAM DA MUA" << endl;
+	for (int i = 0; i < w; i++) cout << "=";
+	cout << endl;
+	cout << setw(w / 7) << left << "Ten san pham";
+	cout << setw(w / 7) << "Gia ban san pham" << setw(w / 7) << "So luong" << setw(w / 7) << endl;
 }

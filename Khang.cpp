@@ -129,7 +129,7 @@ void bosungSP(List &DSSP)
 	char x[20];
 	cout << "Nhap ten san pham muon bo sung hang:";
 	cin.getline(x, 20);
-	while (p != NULL && strcmp(p->infor.Ten_sp,x) != 0)
+	while (p != NULL && strcmp(p->infor.Ten_sp, x) != 0)
 		p = p->pnext;
 	if (p != NULL)
 	{
@@ -183,11 +183,9 @@ void muaSP(List &DSSP, ListSPDB &DSSPDB, ListSPDB &DSTongSPDB)
 		cout << "Nhap 1 de mua tiep, 0 de ket thuc:";
 		cin >> mua;
 	}
-	InThongTinSPDB(DSSPDB);
-	//InHoaDonMuaHang(DSSPDB);
-	huyDSSPDB(DSSPDB); 
-	//In hoa don xong danh sach nay se duoc huy de su dung cho lan mua khac
-	//Danh sach tong san pham da ban van giu lai de tinh tong doanh thu
+	cout << endl;
+	InHoaDon(DSSPDB);
+	huyDSSPDB(DSSPDB);
 }
 
 void tongDoanhThu(ListSPDB DSTongSPDB)
@@ -213,29 +211,4 @@ void huyDSSPDB(ListSPDB &DSSPDB)
 		delete p;
 	}
 	DSSPDB.pTail = NULL;
-}
-
-void InThongTinSPDB(ListSPDB DSSPDB)
-{
-	int w = 130;
-	inDSSPDB(DSSPDB);
-	for (int i = 0; i < w; i++) cout << "=";
-	cout << endl;
-	NodeSPDB *p = DSSPDB.pHead;
-	while (p != NULL)
-	{
-		cout << setw(w / 7) << left << p->infor.Ten_spdb << setw(w / 7) << p->infor.Gia_Bandb << setw(w / 7) << p->infor.Sldb << endl;
-		p = p->pnext;
-	}
-}
-void inDSSPDB(ListSPDB DSSPSPDB)
-{
-	int w = 130;
-	for (int i = 0; i < w; i++) cout << "=";
-	cout << endl;
-	cout << setw((w - 20) / 2) << left << " " << "SAN PHAM DA MUA" << endl;
-	for (int i = 0; i < w; i++) cout << "=";
-	cout << endl;
-	cout << setw(w / 7) << left << "Ten san pham";
-	cout << setw(w / 7) << "Gia ban san pham" << setw(w / 7) << "So luong" << setw(w / 7) << endl;
 }

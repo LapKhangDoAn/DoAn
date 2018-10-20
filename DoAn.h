@@ -8,7 +8,5 @@
 #include "Khang.h"
 
 #define max 100
-#define printstr(w)
-
 
 using namespace std;

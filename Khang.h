@@ -33,5 +33,5 @@ Node* searchNode(struct SanPham x, List myList);
 void bosungSP(List &DSSP);
 void muaSP(List &DSSP, ListSPDB &DSSPDB, ListSPDB &DSTongSPDB);
 void tongDoanhThu(ListSPDB DSTongSPDB);
-void InThongTinSPDB(ListSPDB DSSPDB);
-void inDSSPDB(ListSPDB DSSPSPDB);
+void InHoaDon(ListSPDB DSSPDB);
+void ThongTinHoaDon(ListSPDB DSSPDB);

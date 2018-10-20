@@ -1,3 +1,4 @@
+
 #define max 100
 
 typedef struct SanPham
@@ -22,7 +23,6 @@ struct List
 	Node *pHead;
 	Node *pTail;
 };
-
 
 void taoDS(List &DSSP);
 void inDS(List DSSP);

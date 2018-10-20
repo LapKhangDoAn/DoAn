@@ -6,6 +6,35 @@ void taoDS(List &DSSP)
 	DSSP.pHead = NULL;
 	DSSP.pTail = NULL;
 }
+void InHoaDon(ListSPDB DSSPDB)
+{
+	int w = 140;
+	int tong = 0;
+	ThongTinHoaDon(DSSPDB);
+	for (int i = 0; i < w; i++) cout << "=";
+	cout << endl;
+	NodeSPDB *p = DSSPDB.pHead;
+	while (p != NULL)
+	{
+		cout << setw(40) << left << p->infor.Ten_spdb << setw(40) << p->infor.Sldb << setw(40) << p->infor.Gia_Bandb << setw(40) << p->infor.Gia_Bandb*p->infor.Sldb << endl;
+		tong = tong + p->infor.Gia_Bandb*p->infor.Sldb;
+		p = p->pnext;
+	}
+	for (int i = 0; i < w; i++) cout << "=";
+	cout << endl;
+	cout << setw((w - 20) / 2) << " " << "Tong cong:" << tong << " VND" << endl;
+}
+void ThongTinHoaDon(ListSPDB DSSPDB)
+{
+	int w = 140;
+	for (int i = 0; i < w; i++) cout << "=";
+	cout << endl;
+	cout << setw((w - 20) / 2) << " " << "Hoa Don Mua Hang" << endl;
+	for (int i = 0; i < w; i++) cout << "=";
+	cout << endl;
+	cout << setw(40) << left << "Ten san pham";
+	cout << setw(40) << "So luong" << setw(40) << "Gia ban san pham" << setw(40) << "Thanh tien" << endl;
+}
 void ThemSP(List&DSSP)
 {
 	int them = 1;
@@ -163,7 +192,7 @@ void TimKiem(List DSSP)
 				dem++;
 				if (dem == 1)
 					inDS(DSSP);
-				cout << setw(w / 7) << left << p->infor.Ten_sp << setw(w / 7) << p->infor.Ma << setw(w / 7) << p->infor.Gia_Ban << setw(w / 7) << p->infor.Sl << setw(w / 7) << p->infor.Nha_cc << setw(w / 7) << p->infor.Ngay_sx << setw(w / 7) << p->infor.Han_sd << endl;
+				cout << setw(20) << left << p->infor.Ten_sp << setw(20) << p->infor.Ma << setw(20) << p->infor.Gia_Ban << setw(20) << p->infor.Sl << setw(20) << p->infor.Nha_cc << setw(20) << p->infor.Ngay_sx << setw(20) << p->infor.Han_sd << endl;
 			}
 			p = p->pnext;
 		}
@@ -183,7 +212,7 @@ void TimKiem(List DSSP)
 				dem++;
 				if (dem == 1)
 					inDS(DSSP);
-				cout << setw(w / 7) << left << p->infor.Ten_sp << setw(w / 7) << p->infor.Ma << setw(w / 7) << p->infor.Gia_Ban << setw(w / 7) << p->infor.Sl << setw(w / 7) << p->infor.Nha_cc << setw(w / 7) << p->infor.Ngay_sx << setw(w / 7) << p->infor.Han_sd << endl;
+				cout << setw(20) << left << p->infor.Ten_sp << setw(20) << p->infor.Ma << setw(20) << p->infor.Gia_Ban << setw(20) << p->infor.Sl << setw(20) << p->infor.Nha_cc << setw(20) << p->infor.Ngay_sx << setw(20) << p->infor.Han_sd << endl;
 			}
 			p = p->pnext;
 		}
@@ -205,7 +234,7 @@ void TimKiem(List DSSP)
 			dem++;
 			if (dem == 1)
 				inDS(DSSP);
-			cout << setw(w / 7) << left << p->infor.Ten_sp << setw(w / 7) << p->infor.Ma << setw(w / 7) << p->infor.Gia_Ban << setw(w / 7) << p->infor.Sl << setw(w / 7) << p->infor.Nha_cc << setw(w / 7) << p->infor.Ngay_sx << setw(w / 7) << p->infor.Han_sd << endl;
+			cout << setw(20) << left << p->infor.Ten_sp << setw(20) << p->infor.Ma << setw(20) << p->infor.Gia_Ban << setw(20) << p->infor.Sl << setw(20) << p->infor.Nha_cc << setw(20) << p->infor.Ngay_sx << setw(20) << p->infor.Han_sd << endl;
 			p = p->pnext;
 		}
 		if (dem == 0)
@@ -215,25 +244,25 @@ void TimKiem(List DSSP)
 }
 void InThongTin(List DSSP)
 {
-	int w = 130;
+	int w = 140;
 	inDS(DSSP);
 	for (int i = 0; i < w; i++) cout << "=";
 	cout << endl;
 	Node *p = DSSP.pHead;
 	while (p != NULL)
 	{
-		cout << setw(w / 7) << left << p->infor.Ten_sp << setw(w / 7) << p->infor.Ma << setw(w / 7) << p->infor.Gia_Ban << setw(w / 7) << p->infor.Sl << setw(w / 7) << p->infor.Nha_cc << setw(w / 7) << p->infor.Ngay_sx << setw(w / 7) << p->infor.Han_sd << endl;
+		cout << setw(20) << left << p->infor.Ten_sp << setw(20) << p->infor.Ma << setw(20) << p->infor.Gia_Ban << setw(20) << p->infor.Sl << setw(20) << p->infor.Nha_cc << setw(20) << p->infor.Ngay_sx << setw(20) << p->infor.Han_sd << endl;
 		p = p->pnext;
 	}
 }
 void inDS(List DSSP)
 {
-	int w = 130;
+	int w = 140;
 	for (int i = 0; i < w; i++) cout << "=";
 	cout << endl;
 	cout << setw((w - 20) / 2) << left << " " << "THONG TIN CAC SAN PHAM" << endl;
 	for (int i = 0; i < w; i++) cout << "=";
 	cout << endl;
-	cout << setw(w / 7) << left << "Ten san pham";
-	cout << setw(w / 7) << "Ma san pham" << setw(w / 7) << "Gia ban san pham" << setw(w / 7) << "So luong" << setw(w / 7) << "Nha cung cap" << setw(w / 7) << "Ngay san xuat" << setw(w / 7) << "Han su dung" << endl;
+	cout << setw(20) << "Ten san pham";
+	cout << setw(20) << "Ma san pham" << setw(20) << "Gia ban san pham" << setw(20) << "So luong" << setw(20) << "Nha cung cap" << setw(20) << "Ngay san xuat" << setw(20) << "Han su dung" << endl;
 }

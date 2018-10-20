@@ -1,6 +1,5 @@
 #include "pch.h"
-#include "Khang.h"
-//#include "Lap.h"
+#include "DoAn.h"
 
 Node* createNode(SanPham x)
 {
@@ -162,7 +161,7 @@ void muaSP(List &DSSP, ListSPDB &DSSPDB, ListSPDB &DSTongSPDB)
 			cout << "Nhap so luong muon mua:";
 			cin >> sl;
 			conlai = p->infor.Sl - sl;
-			if (conlai <= 0)
+			if (conlai < 0)
 				cout << "Khong du so luong, cua hang chi con lai " << p->infor.Sl << " san pham nay!" << endl;
 			else
 			{
@@ -181,7 +180,7 @@ void muaSP(List &DSSP, ListSPDB &DSSPDB, ListSPDB &DSTongSPDB)
 		}
 		else
 			cout << "Cua hang chua co mat hang nay!" << endl;
-		cout << "Nhap 1 de mua tiep, 0 de ket thuc" << endl;
+		cout << "Nhap 1 de mua tiep, 0 de ket thuc:";
 		cin >> mua;
 	}
 	InThongTinSPDB(DSSPDB);

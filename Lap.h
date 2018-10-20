@@ -1,14 +1,4 @@
-
-#include "pch.h"
-#include <stdio.h>
-#include <conio.h>
-#include <iomanip>
-#include <math.h>
-#include <iostream>
 #define max 100
-#define printstr(w)
-
-using namespace std;
 
 typedef struct SanPham
 {
@@ -32,6 +22,7 @@ struct List
 	Node *pHead;
 	Node *pTail;
 };
+
 
 void taoDS(List &DSSP);
 void inDS(List DSSP);

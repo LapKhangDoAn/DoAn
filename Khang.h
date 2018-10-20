@@ -1,4 +1,4 @@
-#include "Lap.h"
+#define max 100
 
 struct SanPhamDaBan
 {

@@ -35,3 +35,4 @@ void muaSP(List &DSSP, ListSPDB &DSSPDB, ListSPDB &DSTongSPDB);
 void tongDoanhThu(ListSPDB DSTongSPDB);
 void InHoaDon(ListSPDB DSSPDB);
 void ThongTinHoaDon(ListSPDB DSSPDB);
+void trahang(List &DSSP, ListSPDB &DSSPDB, ListSPDB &DSTongSPDB);

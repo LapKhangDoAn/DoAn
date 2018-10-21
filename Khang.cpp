@@ -167,14 +167,30 @@ void muaSP(List &DSSP, ListSPDB &DSSPDB, ListSPDB &DSTongSPDB)
 			{
 				cout << "Mua thanh cong!" << endl;
 				SanPhamDaBan x, tong;
-				strcpy_s(x.Ten_spdb, p->infor.Ten_sp);
-				x.Sldb = sl;
-				x.Gia_Bandb = p->infor.Gia_Ban;
-				themSPDB(DSSPDB, x);
-				strcpy_s(tong.Ten_spdb, p->infor.Ten_sp);
-				tong.Sldb = sl;
-				tong.Gia_Bandb = p->infor.Gia_Ban;
-				themSPDB(DSTongSPDB, tong);
+				NodeSPDB *q;
+				q = DSSPDB.pHead;
+				while (q != NULL && strcmp(p->infor.Ten_sp, q->infor.Ten_spdb) != 0)
+					q = q->pnext;
+				NodeSPDB *s;
+				s = DSTongSPDB.pHead;
+				while (s != NULL && strcmp(p->infor.Ten_sp, s->infor.Ten_spdb) != 0)
+					s = s->pnext;
+				if (q != NULL)
+				{
+					q->infor.Sldb = q->infor.Sldb + sl;
+					s->infor.Sldb = s->infor.Sldb + sl;
+				}
+				else
+				{
+					strcpy_s(x.Ten_spdb, p->infor.Ten_sp);
+					x.Sldb = sl;
+					x.Gia_Bandb = p->infor.Gia_Ban;
+					themSPDB(DSSPDB, x);
+					strcpy_s(tong.Ten_spdb, p->infor.Ten_sp);
+					tong.Sldb = sl;
+					tong.Gia_Bandb = p->infor.Gia_Ban;
+					themSPDB(DSTongSPDB, tong);
+				}
 				p->infor.Sl = conlai;
 			}
 		}
@@ -183,9 +199,54 @@ void muaSP(List &DSSP, ListSPDB &DSSPDB, ListSPDB &DSTongSPDB)
 		cout << "Nhap 1 de mua tiep, 0 de ket thuc:";
 		cin >> mua;
 	}
+	trahang(DSSP, DSSPDB, DSTongSPDB);
 	cout << endl;
 	InHoaDon(DSSPDB);
 	huyDSSPDB(DSSPDB);
+}
+
+void trahang(List &DSSP, ListSPDB &DSSPDB, ListSPDB &DSTongSPDB)
+{
+	int tra = 1;
+	while (tra == 1)
+	{
+		cin.ignore();
+		char x[20];
+		cout << "Nhap ten san pham can tra:";
+		cin.getline(x, 20);
+		NodeSPDB* q;
+		q = DSSPDB.pHead;
+		while (q != NULL && strcmp(q->infor.Ten_spdb, x) != 0)
+			q = q->pnext;
+		if (q != NULL)
+		{
+			Node* p;
+			p = DSSP.pHead;
+			while (p != NULL && strcmp(p->infor.Ten_sp, x) != 0)
+				p = p->pnext;
+			NodeSPDB* s;
+			s = DSTongSPDB.pHead;
+			while (s != NULL && strcmp(s->infor.Ten_spdb, x) != 0)
+				s = s->pnext;
+			int sl = 0, hienco = 0;
+			cout << "Nhap so luong muon tra lai:";
+			cin >> sl;
+			hienco = q->infor.Sldb;
+			if (sl > hienco)
+				cout << "Ban chi mua co " << q->infor.Sldb << " san pham nay!" << endl;
+			else
+			{
+				cout << "Tra lai thanh cong!" << endl;
+				q->infor.Sldb = q->infor.Sldb - sl;
+				s->infor.Sldb = s->infor.Sldb - sl;
+				p->infor.Sl = p->infor.Sl + sl;
+			}
+		}
+		else
+			cout << "Ban khong co mua mat hang nay!" << endl;
+		cout << "Nhap 1 de tra lai tiep, 0 de ket thuc:";
+		cin >> tra;
+	}
 }
 
 void tongDoanhThu(ListSPDB DSTongSPDB)

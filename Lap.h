@@ -36,3 +36,4 @@ Node* searchNode(List &DSSP);
 void InsertAfter(List&DSSP, Node *p, Node *q, SanPham x);
 void ThemSP(List&DSSP);
 void SapXep(List DSSP);
+void  ThoiTien(int&tong, int TienKhach);

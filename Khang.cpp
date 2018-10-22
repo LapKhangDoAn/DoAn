@@ -142,7 +142,7 @@ void bosungSP(List &DSSP)
 		cout << "Cua hang chua co mat hang nay!";
 }
 
-void muaSP(List &DSSP, ListSPDB &DSSPDB, ListSPDB &DSTongSPDB)
+void muaSP(List &DSSP, ListSPDB &DSSPDB, ListSPDB &DSTongSPDB,int &tong)
 {
 	int mua = 1;
 	while (mua == 1)
@@ -201,7 +201,9 @@ void muaSP(List &DSSP, ListSPDB &DSSPDB, ListSPDB &DSTongSPDB)
 	}
 	trahang(DSSP, DSSPDB, DSTongSPDB);
 	cout << endl;
-	InHoaDon(DSSPDB);
+	InHoaDon(DSSPDB,tong);
+	int TienKhach = 0;
+	ThoiTien(tong, TienKhach);
 	huyDSSPDB(DSSPDB);
 }
 

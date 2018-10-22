@@ -35,3 +35,4 @@ void addHead(List&DSSP, SanPham x, Node *p);
 Node* searchNode(List &DSSP);
 void InsertAfter(List&DSSP, Node *p, Node *q, SanPham x);
 void ThemSP(List&DSSP);
+void SapXep(List DSSP);

@@ -6,6 +6,27 @@ void taoDS(List &DSSP)
 	DSSP.pHead = NULL;
 	DSSP.pTail = NULL;
 }
+void SapXep(List DSSP)
+{
+	Node *p, *q, *min;
+	p = DSSP.pHead;
+	SanPham x;
+	while (p != DSSP.pTail)
+	{
+		min = p;
+		q = p->pnext;
+		while (q != NULL)
+		{
+			if (q->infor.Gia_Ban < min->infor.Gia_Ban) 
+				min = q;
+			q = q->pnext;
+		}
+		x = p->infor;
+		p->infor = min->infor;
+		min->infor = x;
+		p = p->pnext;
+	}
+}
 void InHoaDon(ListSPDB DSSPDB)
 {
 	int w = 140;

@@ -200,6 +200,7 @@ void muaSP(List &DSSP, ListSPDB &DSSPDB, ListSPDB &DSTongSPDB,int &tong)
 		cin >> mua;
 	}
 	trahang(DSSP, DSSPDB, DSTongSPDB);
+	khuyenmai(DSSPDB, DSTongSPDB);
 	cout << endl;
 	InHoaDon(DSSPDB,tong);
 	int TienKhach = 0;
@@ -248,6 +249,32 @@ void trahang(List &DSSP, ListSPDB &DSSPDB, ListSPDB &DSTongSPDB)
 			cout << "Ban khong co mua mat hang nay!" << endl;
 		cout << "Nhap 1 de tra lai tiep, 0 de ket thuc:";
 		cin >> tra;
+	}
+}
+
+void khuyenmai(ListSPDB &DSSPDB, ListSPDB &DSTongSPDB)
+{
+	NodeSPDB *q;
+	q = DSSPDB.pHead;
+	while (q != NULL)
+	{
+		if (q->infor.Sldb >= 5 && q->infor.Sldb < 10)
+		{
+			q->infor.Giamgia = q->infor.Gia_Bandb*q->infor.Sldb*0.05;
+		}
+		if (q->infor.Sldb >= 10 && q->infor.Sldb < 20)
+		{
+			q->infor.Giamgia = q->infor.Gia_Bandb*q->infor.Sldb*0.1;
+		}
+		if (q->infor.Sldb >= 20 && q->infor.Sldb < 50)
+		{
+			q->infor.Giamgia = q->infor.Gia_Bandb*q->infor.Sldb*0.2;
+		}
+		if (q->infor.Sldb >= 50)
+		{
+			q->infor.Giamgia = q->infor.Gia_Bandb*q->infor.Sldb*0.25;
+		}
+		q = q->pnext;
 	}
 }
 

@@ -5,6 +5,7 @@ struct SanPhamDaBan
 	char Ten_spdb[max];
 	int Sldb;
 	int Gia_Bandb;
+	double Giamgia = 0;
 };
 
 struct NodeSPDB
@@ -36,3 +37,4 @@ void tongDoanhThu(ListSPDB DSTongSPDB);
 void InHoaDon(ListSPDB DSSPDB, int &tong);
 void ThongTinHoaDon(ListSPDB DSSPDB);
 void trahang(List &DSSP, ListSPDB &DSSPDB, ListSPDB &DSTongSPDB);
+void khuyenmai(ListSPDB &DSSPDB, ListSPDB &DSTongSPDB);

@@ -152,8 +152,8 @@ void InHoaDon(ListSPDB DSSPDB,int &tong)
 	NodeSPDB *p = DSSPDB.pHead;
 	while (p != NULL)
 	{
-		cout << setw(40) << left << p->infor.Ten_spdb << setw(40) << p->infor.Sldb << setw(40) << p->infor.Gia_Bandb << setw(40) << p->infor.Gia_Bandb*p->infor.Sldb << endl;
-		tong = tong + p->infor.Gia_Bandb*p->infor.Sldb;
+		cout << setw(40) << left << p->infor.Ten_spdb << setw(40) << p->infor.Sldb << setw(40) << p->infor.Gia_Bandb <<  setw(40) << p->infor.Gia_Bandb*p->infor.Sldb << setw(40) << p->infor.Giamgia << endl;
+		tong = tong + p->infor.Gia_Bandb*p->infor.Sldb - p->infor.Giamgia;
 		p = p->pnext;
 	}
 	for (int i = 0; i < w; i++) cout << "=";
@@ -169,7 +169,7 @@ void ThongTinHoaDon(ListSPDB DSSPDB)
 	for (int i = 0; i < w; i++) cout << "=";
 	cout << endl;
 	cout << setw(40) << left << "Ten san pham";
-	cout << setw(40) << "So luong" << setw(40) << "Gia ban san pham" << setw(40) << "Thanh tien" << endl;
+	cout << setw(40) << "So luong" << setw(40) << "Gia ban san pham" << setw(40)  << "Thanh tien" << setw(40) << "Tien giam" << endl;
 }
 void ThemSP(List&DSSP)
 {

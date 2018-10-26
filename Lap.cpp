@@ -153,7 +153,7 @@ void InHoaDon(ListSPDB DSSPDB,int &tong)
 	while (p != NULL)
 	{
 		cout << setw(40) << left << p->infor.Ten_spdb << setw(40) << p->infor.Sldb << setw(40) << p->infor.Gia_Bandb <<  setw(40) << p->infor.Gia_Bandb*p->infor.Sldb << setw(40) << p->infor.Giamgia << endl;
-		tong = tong + p->infor.Gia_Bandb*p->infor.Sldb - p->infor.Giamgia;
+		tong = tong + p->infor.Gia_Bandb*p->infor.Sldb - p->infor.Giamgia;		
 		p = p->pnext;
 	}
 	for (int i = 0; i < w; i++) cout << "=";

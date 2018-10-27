@@ -127,9 +127,9 @@ SanPham nhapSP()
 	cout << "Nha cung cap san pham:";
 	cin.getline(x.Nha_cc, 100);
 	cout << "Nhap ngay san xuat san pham:";
-	cin.getline(x.Ngay_sx, 100);
+	cin >> x.Ngay_sx->ngay >> x.Ngay_sx->thang >> x.Ngay_sx->nam;
 	cout << "Nhap han su dung san pham:";
-	cin.getline(x.Han_sd, 100);
+	cin >> x.Han_sd->ngay >> x.Han_sd->thang >> x.Han_sd->nam;
 	cout << "Nhap so luong san pham:";
 	cin >> x.Sl;
 	cout << "Nhap gia ban san pham:";

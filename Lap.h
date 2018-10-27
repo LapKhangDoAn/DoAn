@@ -1,5 +1,11 @@
 
 #define max 100
+typedef struct DATE
+{
+	int ngay;
+	int thang;
+	int nam;
+};
 
 typedef struct SanPham
 {
@@ -8,8 +14,8 @@ typedef struct SanPham
 	char Ma[max];
 	int Sl;
 	int Gia_Ban;
-	char Ngay_sx[max];
-	char Han_sd[max];
+	DATE Ngay_sx[max];
+	DATE Han_sd[max];
 };
 
 struct Node
@@ -31,9 +37,10 @@ void TimKiem(List DSSP);
 int RemoveX(List&DSSP, char x[]);
 void RemoveAfter(List &DSSP);
 void RemoveHead(List&DSSP);
-void addHead(List&DSSP, SanPham x, Node *p);
+void addHead(List&DSSP, Node *p);
 Node* searchNode(List &DSSP);
 void InsertAfter(List&DSSP, Node *p, Node *q, SanPham x);
 void ThemSP(List&DSSP);
 void SapXep(List DSSP);
 void  ThoiTien(int&tong, int TienKhach);
+void KiemTraHanSD(List DSSP);

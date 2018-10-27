@@ -58,6 +58,7 @@ void muaSP(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB, int &tong, in
 void InHoaDon(ListSPDB DSSPDB, int &tong);
 void ThongTinHoaDon(ListSPDB DSSPDB);
 void trahang(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB);
-void khuyenmai(ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB);
+void khuyenmai(ListSPDB &DSSPDB);
 void inThongTinTongSanPhamDB(ListTongSPDB DSTongSPDB);
 void inDSTongSanPhamDB(ListTongSPDB DSTongSPDB);
+void sanphamBanChayNhat(ListTongSPDB DSTongSPDB);

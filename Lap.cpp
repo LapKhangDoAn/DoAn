@@ -70,7 +70,7 @@ void  ThoiTien(int&tong,int TienKhach)
 	int tienthoi = TienKhach - tong;
 	cout << "\nTien thoi: " << tienthoi;
 	if (tienthoi == 0)
-		cout << "\nKhach da tra du tien!";
+		cout << "\nKhach da tra du tien!" << endl;
 	else
 	{
 		int dem500d = 0;
@@ -79,6 +79,7 @@ void  ThoiTien(int&tong,int TienKhach)
 		int dem5k = 0;
 		int dem10k = 0;
 		int dem20k = 0, dem50k = 0, dem100k = 0, dem200k = 0, dem500k = 0;
+		int cuckeo = 0;
 		while (tienthoi != 0)
 		{
 			if (tienthoi >= 500000)
@@ -131,46 +132,55 @@ void  ThoiTien(int&tong,int TienKhach)
 				tienthoi -= 500;
 				dem500d++;
 			}
+			else if (tienthoi < 500)
+			{
+				tienthoi = 0;
+				cuckeo = 1;
+			}
 		}
 		if (dem500k != 0)
 		{
-			cout << "\nCo " << dem500k << "to 500.000d";
+			cout << "\nCo" << dem500k << " to 500.000d";
 		}
 		if (dem200k != 0)
 		{
-			cout << "\nCo " << dem200k << "to 200.000d";
+			cout << "\nCo " << dem200k << " to 200.000d";
 		}
 		if (dem100k != 0)
 		{
-			cout << "\nCo " << dem100k << "to 100.000d";
+			cout << "\nCo " << dem100k << " to 100.000d";
 		}
 		if (dem50k != 0)
 		{
-			cout << "\nCo " << dem50k << "to 50.000d";
+			cout << "\nCo " << dem50k << " to 50.000d";
 		}
 		if (dem20k != 0)
 		{
-			cout << "\nCo " << dem20k << "to 20.000d";
+			cout << "\nCo " << dem20k << " to 20.000d";
 		}
 		if (dem10k != 0)
 		{
-			cout << "\nCo " << dem10k << "to 10.000d";
+			cout << "\nCo " << dem10k << " to 10.000d";
 		}
 		if (dem5k != 0)
 		{
-			cout << "\nCo " << dem5k << "to 5.000d";
+			cout << "\nCo " << dem5k << " to 5.000d";
 		}
 		if (dem2k != 0)
 		{
-			cout << "\nCo " << dem2k << "to 2.000d";
+			cout << "\nCo " << dem2k << " to 2.000d";
 		}
 		if (dem1k != 0)
 		{
-			cout << "\nCo " << dem1k << "to 1.000d";
+			cout << "\nCo " << dem1k << " to 1.000d";
 		}
 		if (dem500d != 0)
 		{
-			cout << "\nCo " << dem500d << "to 500d";
+			cout << "\nCo " << dem500d << " to 500d";
+		}
+		if (cuckeo != 0)
+		{
+			cout << "\n1 cuc keo";
 		}
 		cout << endl;
 	}

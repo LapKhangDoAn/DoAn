@@ -62,3 +62,4 @@ void khuyenmai(ListSPDB &DSSPDB);
 void inThongTinTongSanPhamDB(ListTongSPDB DSTongSPDB);
 void inDSTongSanPhamDB(ListTongSPDB DSTongSPDB);
 void sanphamBanChayNhat(ListTongSPDB DSTongSPDB);
+void loinhuan(ListTongSPDB DSTongSPDB, int TongDoanhThu);

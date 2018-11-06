@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "DoAn.h"
 
-Node* createNode(SanPham x)
+Node* CreateNode(SanPham x)
 {
 	Node *p;
 	p = new Node;
@@ -15,7 +15,7 @@ Node* createNode(SanPham x)
 	return p;
 }
 
-NodeSPDB* createNodeSPDB(SanPhamDaBan x)
+NodeSPDB* CreateNodeSPDB(SanPhamDaBan x)
 {
 	NodeSPDB *p;
 	p = new NodeSPDB;
@@ -29,7 +29,7 @@ NodeSPDB* createNodeSPDB(SanPhamDaBan x)
 	return p;
 }
 
-NodeTongSPDB* createNodeTongSPDB(TongSanPhamDaBan x)
+NodeTongSPDB* CreateNodeTongSPDB(TongSanPhamDaBan x)
 {
 	NodeTongSPDB *p;
 	p = new NodeTongSPDB;
@@ -43,9 +43,9 @@ NodeTongSPDB* createNodeTongSPDB(TongSanPhamDaBan x)
 	return p;
 }
 
-void addTail(List &DSSP, SanPham x)
+void AddTail(List &DSSP, SanPham x)
 {
-	Node *p = createNode(x);
+	Node *p = CreateNode(x);
 	if (DSSP.pHead == NULL)
 	{
 		DSSP.pHead = p;
@@ -59,15 +59,15 @@ void addTail(List &DSSP, SanPham x)
 	}
 }
 
-void taoDSSPDB(ListSPDB &DSSPDB)
+void TaoDSSPDB(ListSPDB &DSSPDB)
 {
 	DSSPDB.pHead = NULL;
 	DSSPDB.pTail = NULL;
 }
 
-void themSPDB(ListSPDB &DSSPDB, SanPhamDaBan x)
+void ThemSPDB(ListSPDB &DSSPDB, SanPhamDaBan x)
 {
-	NodeSPDB *p = createNodeSPDB(x);
+	NodeSPDB *p = CreateNodeSPDB(x);
 	if (DSSPDB.pHead == NULL)
 	{
 		DSSPDB.pHead = p;
@@ -81,15 +81,15 @@ void themSPDB(ListSPDB &DSSPDB, SanPhamDaBan x)
 	}
 }
 
-void taoDSTongSPDB(ListTongSPDB &DSTongSPDB)
+void TaoDSTongSPDB(ListTongSPDB &DSTongSPDB)
 {
 	DSTongSPDB.pHead = NULL;
 	DSTongSPDB.pTail = NULL;
 }
 
-void themTongSPDB(ListTongSPDB &DSTongSPDB, TongSanPhamDaBan x)
+void ThemTongSPDB(ListTongSPDB &DSTongSPDB, TongSanPhamDaBan x)
 {
-	NodeTongSPDB *p = createNodeTongSPDB(x);
+	NodeTongSPDB *p = CreateNodeTongSPDB(x);
 	if (DSTongSPDB.pHead == NULL)
 	{
 		DSTongSPDB.pHead = p;
@@ -103,7 +103,7 @@ void themTongSPDB(ListTongSPDB &DSTongSPDB, TongSanPhamDaBan x)
 	}
 }
 
-void nhapDS(List &DSSP)
+void NhapDS(List &DSSP)
 {
 	int n = 0;
 	cout << "Nhap so san pham:";
@@ -111,34 +111,34 @@ void nhapDS(List &DSSP)
 	for (int i = 0; i < n; i++)
 	{
 		cout << "Nhap thong tin san pham:" << endl;
-		SanPham x = nhapSP();
-		addTail(DSSP, x);
+		SanPham x = NhapSP();
+		AddTail(DSSP, x);
 	}
 }
 
-SanPham nhapSP()
+SanPham NhapSP()
 {
 	SanPham x;
 	cin.ignore();
 	cout << "Nhap ten san pham:";
-	cin.getline(x.Ten_sp, 100);
+	cin.getline(x.TenSP, 100);
 	cout << "Nhap ma san pham:";
 	cin.getline(x.Ma, 100);
 	cout << "Nhap gia ban san pham:";
-	cin >> x.Gia_Ban;
+	cin >> x.GiaBan;
 	cout << "Nhap so luong san pham:";
 	cin >> x.Sl;
 	cin.ignore();
 	cout << "Nha cung cap san pham:";
-	cin.getline(x.Nha_cc, 100);
+	cin.getline(x.NhaCC, 100);
 	cout << "Nhap ngay san xuat san pham:";
-	cin >> x.Ngay_sx->ngay >> x.Ngay_sx->thang >> x.Ngay_sx->nam;
+	cin >> x.NgaySX->Ngay >> x.NgaySX->Thang >> x.NgaySX->Nam;
 	cout << "Nhap han su dung san pham:";
-	cin >> x.Han_sd->ngay >> x.Han_sd->thang >> x.Han_sd->nam;
+	cin >> x.HanSD->Ngay >> x.HanSD->Thang >> x.HanSD->Nam;
 	return x;
 }
 
-void huyDS(List &DSSP)
+void HuyDS(List &DSSP)
 {
 	Node *p;
 	while (DSSP.pHead != NULL)
@@ -159,14 +159,14 @@ void huyDS(List &DSSP)
 //	return p; 
 //}
 
-void bosungSP(List &DSSP)
+void BoSungSP(List &DSSP)
 {
 	Node* p;
 	p = DSSP.pHead;
 	char x[20];
 	cout << "Nhap ten san pham muon bo sung hang:";
 	cin.getline(x, 20);
-	while (p != NULL && strcmp(p->infor.Ten_sp, x) != 0)
+	while (p != NULL && strcmp(p->infor.TenSP, x) != 0)
 		p = p->pnext;
 	if (p != NULL)
 	{
@@ -179,7 +179,7 @@ void bosungSP(List &DSSP)
 		cout << "Cua hang chua co mat hang nay!";
 }
 
-void muaSP(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB,int &tong, int &TongDoanhThu)
+void MuaSP(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB, int &tong, int &TongDoanhThu)
 {
 	cin.ignore();
 	do
@@ -189,7 +189,7 @@ void muaSP(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB,int &tong, int
 		cin.getline(x, 20);
 		Node* p;
 		p = DSSP.pHead;
-		while (p != NULL && strcmp(p->infor.Ten_sp, x) != 0)
+		while (p != NULL && strcmp(p->infor.TenSP, x) != 0)
 			p = p->pnext;
 		if (p != NULL)
 		{
@@ -206,7 +206,7 @@ void muaSP(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB,int &tong, int
 				SanPhamDaBan x;
 				NodeSPDB *q;
 				q = DSSPDB.pHead;
-				while (q != NULL && strcmp(p->infor.Ten_sp, q->infor.Ten_spdb) != 0)
+				while (q != NULL && strcmp(p->infor.TenSP, q->infor.TenSPDB) != 0)
 					q = q->pnext;
 				if (q != NULL)
 				{
@@ -214,44 +214,44 @@ void muaSP(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB,int &tong, int
 				}
 				else
 				{
-					strcpy_s(x.Ten_spdb, p->infor.Ten_sp);
+					strcpy_s(x.TenSPDB, p->infor.TenSP);
 					x.Sldb = sl;
-					x.Gia_Bandb = p->infor.Gia_Ban;
-					themSPDB(DSSPDB, x);
+					x.GiaBanDB = p->infor.GiaBan;
+					ThemSPDB(DSSPDB, x);
 				}
 				p->infor.Sl = conlai;
 			}
 			TongSanPhamDaBan tongsp;
 			NodeTongSPDB *s;
 			s = DSTongSPDB.pHead;
-			while (s != NULL && strcmp(p->infor.Ten_sp, s->infor.Ten_tongspdb) != 0)
+			while (s != NULL && strcmp(p->infor.TenSP, s->infor.TenTongSPDB) != 0)
 				s = s->pnext;
 			if (s != NULL)
 			{
-				s->infor.tongSldb = s->infor.tongSldb + sl;
+				s->infor.TongSldb = s->infor.TongSldb + sl;
 			}
 			else
 			{
-				strcpy_s(tongsp.Ten_tongspdb, p->infor.Ten_sp);
-				tongsp.tongSldb = sl;
-				themTongSPDB(DSTongSPDB, tongsp);
+				strcpy_s(tongsp.TenTongSPDB, p->infor.TenSP);
+				tongsp.TongSldb = sl;
+				ThemTongSPDB(DSTongSPDB, tongsp);
 			}
 		}
 		else
 			cout << "Cua hang chua co mat hang nay!" << endl;
 		cout << "Nhan phim bat ki de tiep tuc, nhan ESC de ket thuc mua hang!" << endl;
 	} while (_getch() != 27);
-	trahang(DSSP, DSSPDB, DSTongSPDB);
-	khuyenmai(DSSPDB);
+	TraHang(DSSP, DSSPDB, DSTongSPDB);
+	KhuyenMai(DSSPDB);
 	cout << endl;
-	InHoaDon(DSSPDB,tong);
+	InHoaDon(DSSPDB, tong);
 	TongDoanhThu = TongDoanhThu + tong;
 	int TienKhach = 0;
 	ThoiTien(tong, TienKhach);
-	huyDSSPDB(DSSPDB);
+	HuyDSSPDB(DSSPDB);
 }
 
-void trahang(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB)
+void TraHang(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB)
 {
 	do
 	{
@@ -260,17 +260,17 @@ void trahang(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB)
 		cin.getline(x, 20);
 		NodeSPDB* q;
 		q = DSSPDB.pHead;
-		while (q != NULL && strcmp(q->infor.Ten_spdb, x) != 0)
+		while (q != NULL && strcmp(q->infor.TenSPDB, x) != 0)
 			q = q->pnext;
 		if (q != NULL)
 		{
 			Node* p;
 			p = DSSP.pHead;
-			while (p != NULL && strcmp(p->infor.Ten_sp, x) != 0)
+			while (p != NULL && strcmp(p->infor.TenSP, x) != 0)
 				p = p->pnext;
 			NodeTongSPDB* s;
 			s = DSTongSPDB.pHead;
-			while (s != NULL && strcmp(s->infor.Ten_tongspdb, x) != 0)
+			while (s != NULL && strcmp(s->infor.TenTongSPDB, x) != 0)
 				s = s->pnext;
 			int sl = 0, hienco = 0;
 			cout << "Nhap so luong muon tra lai:";
@@ -283,7 +283,7 @@ void trahang(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB)
 			{
 				cout << "Tra lai thanh cong!" << endl;
 				q->infor.Sldb = q->infor.Sldb - sl;
-				s->infor.tongSldb = s->infor.tongSldb - sl;
+				s->infor.TongSldb = s->infor.TongSldb - sl;
 				p->infor.Sl = p->infor.Sl + sl;
 			}
 		}
@@ -293,7 +293,7 @@ void trahang(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB)
 	} while (_getch() != 27);
 }
 
-void khuyenmai(ListSPDB &DSSPDB)
+void KhuyenMai(ListSPDB &DSSPDB)
 {
 	NodeSPDB *q;
 	q = DSSPDB.pHead;
@@ -301,25 +301,25 @@ void khuyenmai(ListSPDB &DSSPDB)
 	{
 		if (q->infor.Sldb >= 5 && q->infor.Sldb < 10)
 		{
-			q->infor.Giamgia = q->infor.Gia_Bandb*q->infor.Sldb*0.05;
+			q->infor.GiamGia = q->infor.GiaBanDB*q->infor.Sldb*0.05;
 		}
 		if (q->infor.Sldb >= 10 && q->infor.Sldb < 20)
 		{
-			q->infor.Giamgia = q->infor.Gia_Bandb*q->infor.Sldb*0.1;
+			q->infor.GiamGia = q->infor.GiaBanDB*q->infor.Sldb*0.1;
 		}
 		if (q->infor.Sldb >= 20 && q->infor.Sldb < 50)
 		{
-			q->infor.Giamgia = q->infor.Gia_Bandb*q->infor.Sldb*0.2;
+			q->infor.GiamGia = q->infor.GiaBanDB*q->infor.Sldb*0.2;
 		}
 		if (q->infor.Sldb >= 50)
 		{
-			q->infor.Giamgia = q->infor.Gia_Bandb*q->infor.Sldb*0.25;
+			q->infor.GiamGia = q->infor.GiaBanDB*q->infor.Sldb*0.25;
 		}
 		q = q->pnext;
 	}
 }
 
-void huyDSSPDB(ListSPDB &DSSPDB)
+void HuyDSSPDB(ListSPDB &DSSPDB)
 {
 	NodeSPDB *p;
 	while (DSSPDB.pHead != NULL)
@@ -331,21 +331,21 @@ void huyDSSPDB(ListSPDB &DSSPDB)
 	DSSPDB.pTail = NULL;
 }
 
-void inThongTinTongSanPhamDB(ListTongSPDB DSTongSPDB)
+void InThongTinTongSanPhamDB(ListTongSPDB DSTongSPDB)
 {
 	int w = 140;
-	inDSTongSanPhamDB(DSTongSPDB);
+	InDSTongSanPhamDB(DSTongSPDB);
 	for (int i = 0; i < w; i++) cout << "=";
 	cout << endl;
 	NodeTongSPDB *p = DSTongSPDB.pHead;
 	while (p != NULL)
 	{
-		cout << setw(20) << left << p->infor.Ten_tongspdb << setw(20) << p->infor.tongSldb << endl;
+		cout << setw(20) << left << p->infor.TenTongSPDB << setw(20) << p->infor.TongSldb << endl;
 		p = p->pnext;
 	}
-	sanphamBanChayNhat(DSTongSPDB);
+	SanPhamBanChayNhat(DSTongSPDB);
 }
-void inDSTongSanPhamDB(ListTongSPDB DSTongSPDB)
+void InDSTongSanPhamDB(ListTongSPDB DSTongSPDB)
 {
 	int w = 140;
 	for (int i = 0; i < w; i++) cout << "=";
@@ -354,38 +354,38 @@ void inDSTongSanPhamDB(ListTongSPDB DSTongSPDB)
 	for (int i = 0; i < w; i++) cout << "=";
 	cout << endl;
 	cout << setw(20) << "Ten san pham";
-	cout << setw(20) << "So luong"  << endl;
+	cout << setw(20) << "So luong" << endl;
 }
 
-void sanphamBanChayNhat(ListTongSPDB DSTongSPDB)
+void SanPhamBanChayNhat(ListTongSPDB DSTongSPDB)
 {
 	NodeTongSPDB *p = DSTongSPDB.pHead;
 	int banchay = 0;
 	char best[20];
-	banchay = p->infor.tongSldb;
-	strcpy_s(best, p->infor.Ten_tongspdb);
+	banchay = p->infor.TongSldb;
+	strcpy_s(best, p->infor.TenTongSPDB);
 	while (p != NULL)
 	{
-		if (banchay < p->infor.tongSldb)
+		if (banchay < p->infor.TongSldb)
 		{
-			banchay = p->infor.tongSldb;
-			strcpy_s(best, p->infor.Ten_tongspdb);
+			banchay = p->infor.TongSldb;
+			strcpy_s(best, p->infor.TenTongSPDB);
 		}
 		p = p->pnext;
 	}
 	cout << "San pham ban chay nhat cua hang la " << best << ", ban duoc " << banchay << " san pham!" << endl;
 }
 
-void loinhuan(ListTongSPDB DSTongSPDB, int TongDoanhThu)
+void LoiNhuan(ListTongSPDB DSTongSPDB, int TongDoanhThu)
 {
 	int tong = 0;
 	int loinhuan = 0;
 	NodeTongSPDB *p = DSTongSPDB.pHead; while (p != NULL)
 	{
 		int giagoc = 0;
-		cout << "Nhap gia goc cua san pham " << p->infor.Ten_tongspdb << ":";
+		cout << "Nhap gia goc cua san pham " << p->infor.TenTongSPDB << ":";
 		cin >> giagoc;
-		tong = tong + p->infor.tongSldb * giagoc;
+		tong = tong + p->infor.TongSldb * giagoc;
 		p = p->pnext;
 	}
 	loinhuan = TongDoanhThu - tong;

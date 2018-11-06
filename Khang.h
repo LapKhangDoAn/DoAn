@@ -2,10 +2,10 @@
 
 struct SanPhamDaBan
 {
-	char Ten_spdb[max];
+	char TenSPDB[max];
 	int Sldb;
-	int Gia_Bandb;
-	double Giamgia = 0;
+	int GiaBanDB;
+	double GiamGia = 0;
 };
 
 struct NodeSPDB
@@ -22,8 +22,8 @@ struct ListSPDB
 
 struct TongSanPhamDaBan
 {
-	char Ten_tongspdb[max];
-	int tongSldb;
+	char TenTongSPDB[max];
+	int TongSldb;
 };
 
 struct NodeTongSPDB
@@ -38,28 +38,28 @@ struct ListTongSPDB
 	NodeTongSPDB *pTail;
 };
 
-Node* createNode(SanPham x);
-NodeSPDB* createNodeSPDB(SanPhamDaBan x);
-NodeTongSPDB* createNodeTongSPDB(TongSanPhamDaBan x);
-void addTail(List &DSSP, SanPham x);
-void taoDSSPDB(ListSPDB &DSSPDB);
-void themSPDB(List &DSSPDB, SanPhamDaBan x);
-void taoDSTongSPDB(ListTongSPDB &DSTongSPDB);
-void themTongSPDB(ListTongSPDB &DSTongSPDB, TongSanPhamDaBan x);
-SanPham nhapSP();
-void nhapDS(List &DSSP);
-void inDS(List DSSP);
-void huyDS(List &DSSP);
-void huyDSSPDB(ListSPDB &DSSPDB);
-Node* searchNode(struct SanPham x, List myList);
-void bosungSP(List &DSSP);
-void muaSP(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB, int &tong, int &TongDoanhThu);
+Node* CreateNode(SanPham x);
+NodeSPDB* CreateNodeSPDB(SanPhamDaBan x);
+NodeTongSPDB* CreateNodeTongSPDB(TongSanPhamDaBan x);
+void AddTail(List &DSSP, SanPham x);
+void TaoDSSPDB(ListSPDB &DSSPDB);
+void ThemSPDB(List &DSSPDB, SanPhamDaBan x);
+void TaoDSTongSPDB(ListTongSPDB &DSTongSPDB);
+void ThemTongSPDB(ListTongSPDB &DSTongSPDB, TongSanPhamDaBan x);
+SanPham NhapSP();
+void NhapDS(List &DSSP);
+void InDS(List DSSP);
+void HuyDS(List &DSSP);
+void HuyDSSPDB(ListSPDB &DSSPDB);
+Node* SearchNode(struct SanPham x, List myList);
+void BoSungSP(List &DSSP);
+void MuaSP(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB, int &tong, int &TongDoanhThu);
 //void tongDoanhThu(ListTongSPDB DSTongSPDB);
 void InHoaDon(ListSPDB DSSPDB, int &tong);
 void ThongTinHoaDon(ListSPDB DSSPDB);
-void trahang(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB);
-void khuyenmai(ListSPDB &DSSPDB);
-void inThongTinTongSanPhamDB(ListTongSPDB DSTongSPDB);
-void inDSTongSanPhamDB(ListTongSPDB DSTongSPDB);
-void sanphamBanChayNhat(ListTongSPDB DSTongSPDB);
-void loinhuan(ListTongSPDB DSTongSPDB, int TongDoanhThu);
+void TraHang(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB);
+void KhuyenMai(ListSPDB &DSSPDB);
+void InThongTinTongSanPhamDB(ListTongSPDB DSTongSPDB);
+void InDSTongSanPhamDB(ListTongSPDB DSTongSPDB);
+void SanPhamBanChayNhat(ListTongSPDB DSTongSPDB);
+void LoiNhuan(ListTongSPDB DSTongSPDB, int TongDoanhThu);

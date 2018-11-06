@@ -1,21 +1,21 @@
 
 #define max 100
-typedef struct DATE
+typedef struct Date
 {
-	int ngay;
-	int thang;
-	int nam;
+	int Ngay;
+	int Thang;
+	int Nam;
 };
 
 typedef struct SanPham
 {
-	char Ten_sp[max];
-	char Nha_cc[max];
+	char TenSP[max];
+	char NhaCC[max];
 	char Ma[max];
 	int Sl;
-	int Gia_Ban;
-	DATE Ngay_sx[max];
-	DATE Han_sd[max];
+	int GiaBan;
+	Date NgaySX[max];
+	Date HanSD[max];
 };
 
 struct Node
@@ -30,15 +30,15 @@ struct List
 	Node *pTail;
 };
 
-void taoDS(List &DSSP);
-void inDS(List DSSP);
+void TaoDS(List &DSSP);
+void InDS(List DSSP);
 void InThongTin(List DSSP);
 void TimKiem(List DSSP);
 int RemoveX(List&DSSP, char x[]);
 void RemoveAfter(List &DSSP);
 void RemoveHead(List&DSSP);
-void addHead(List&DSSP, Node *p);
-Node* searchNode(List &DSSP);
+void AddHead(List&DSSP, Node *p);
+Node* SearchNode(List &DSSP);
 void InsertAfter(List&DSSP, Node *p, Node *q, SanPham x);
 void ThemSP(List&DSSP);
 void SapXep(List DSSP);

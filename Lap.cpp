@@ -1,7 +1,7 @@
 ﻿#include "pch.h"
 #include "DoAn.h"
 
-void taoDS(List &DSSP)
+void TaoDS(List &DSSP)
 {
 	DSSP.pHead = NULL;
 	DSSP.pTail = NULL;
@@ -14,30 +14,30 @@ void KiemTraHanSD(List DSSP)
 	char a[100];
 	cout << "Nhap ma san pham can kiem tra han su dung:";
 	cin.getline(a, 100);
-	while (p != NULL && strcmp(a, p->infor.Ten_sp) != 0)
+	while (p != NULL && strcmp(a, p->infor.TenSP) != 0)
 		p = p->pnext;
 	int d, m, y;
 	cout << "Nhap ngay hien tai:";
 	cin >> d >> m >> y;
-	if (p->infor.Han_sd->nam > y)
+	if (p->infor.HanSD->Nam > y)
 		cout << "San Pham Con Han Su Dung";
 	else
-		if (p->infor.Han_sd->nam < y)
+		if (p->infor.HanSD->Nam < y)
 			cout << "San Pham Da Het Han Su Dung";
 		else
-			if(p->infor.Han_sd->thang > m)
+			if (p->infor.HanSD->Thang > m)
 				cout << "San Pham Con Han Su Dung";
 			else
-				if (p->infor.Han_sd->thang < m)
+				if (p->infor.HanSD->Thang < m)
 					cout << "San Pham Da Het Han Su Dung";
 				else
-					if(p->infor.Han_sd->ngay > d)
+					if (p->infor.HanSD->Ngay > d)
 						cout << "San Pham Con Han Su Dung";
-					else 
-						if (p->infor.Han_sd->ngay < d)
+					else
+						if (p->infor.HanSD->Ngay < d)
 							cout << "San Pham Da Het Han Su Dung";
 						else cout << "San Pham Con Han Su Dung";
-				
+
 }
 void SapXep(List DSSP)
 {
@@ -50,7 +50,7 @@ void SapXep(List DSSP)
 		q = p->pnext;
 		while (q != NULL)
 		{
-			if (q->infor.Gia_Ban < min->infor.Gia_Ban)
+			if (q->infor.GiaBan < min->infor.GiaBan)
 				min = q;
 			q = q->pnext;
 		}
@@ -60,7 +60,7 @@ void SapXep(List DSSP)
 		p = p->pnext;
 	}
 }
-void  ThoiTien(int&tong,int TienKhach)
+void  ThoiTien(int&tong, int TienKhach)
 {
 	while (TienKhach < tong)
 	{
@@ -185,7 +185,7 @@ void  ThoiTien(int&tong,int TienKhach)
 		cout << endl;
 	}
 }
-void InHoaDon(ListSPDB DSSPDB,int &tong)
+void InHoaDon(ListSPDB DSSPDB, int &tong)
 {
 	int w = 140;
 	tong = 0;
@@ -195,8 +195,8 @@ void InHoaDon(ListSPDB DSSPDB,int &tong)
 	NodeSPDB *p = DSSPDB.pHead;
 	while (p != NULL)
 	{
-		cout << setw(40) << left << p->infor.Ten_spdb << setw(40) << p->infor.Sldb << setw(40) << p->infor.Gia_Bandb <<  setw(40) << p->infor.Gia_Bandb*p->infor.Sldb << setw(40) << p->infor.Giamgia << endl;
-		tong = tong + p->infor.Gia_Bandb*p->infor.Sldb - p->infor.Giamgia;		
+		cout << setw(30) << left << p->infor.TenSPDB << setw(30) << p->infor.Sldb << setw(30) << p->infor.GiaBanDB << setw(30) << p->infor.GiaBanDB*p->infor.Sldb << setw(30) << p->infor.GiamGia << endl;
+		tong = tong + p->infor.GiaBanDB*p->infor.Sldb - p->infor.GiamGia;
 		p = p->pnext;
 	}
 	for (int i = 0; i < w; i++) cout << "=";
@@ -211,8 +211,8 @@ void ThongTinHoaDon(ListSPDB DSSPDB)
 	cout << setw((w - 20) / 2) << " " << "Hoa Don Mua Hang" << endl;
 	for (int i = 0; i < w; i++) cout << "=";
 	cout << endl;
-	cout << setw(40) << left << "Ten san pham";
-	cout << setw(40) << "So luong" << setw(40) << "Gia ban san pham" << setw(40)  << "Thanh tien" << setw(40) << "Tien giam" << endl;
+	cout << setw(30) << left << "Ten san pham";
+	cout << setw(30) << "So luong" << setw(30) << "Gia ban san pham" << setw(30) << "Thanh tien" << setw(30) << "Tien giam" << endl;
 }
 void ThemSP(List&DSSP)
 {
@@ -220,7 +220,7 @@ void ThemSP(List&DSSP)
 	while (them == 1)
 	{
 		cout << "Nhap thong tin san pham can them:" << endl;
-		SanPham x = nhapSP();
+		SanPham x = NhapSP();
 		cout << "1.Them san pham vao dau danh sach" << endl;
 		cout << "2.Them san pham B vào sau san pham A co trong danh sach" << endl;
 		cout << "3.Them san pham vao cuoi danh sach" << endl;
@@ -228,20 +228,20 @@ void ThemSP(List&DSSP)
 		cin >> chon;
 		if (chon == 1)
 		{
-			Node *q = createNode(x);
-			addHead(DSSP, q);
+			Node *q = CreateNode(x);
+			AddHead(DSSP, q);
 		}
 		if (chon == 2)
 		{
-			Node *q = createNode(x);
-			Node *p = searchNode(DSSP);
+			Node *q = CreateNode(x);
+			Node *p = SearchNode(DSSP);
 			cout << p->infor.Ma;
 			InsertAfter(DSSP, p, q, x);
 		}
 		if (chon == 3)
 		{
-			Node *q = createNode(x);
-			addTail(DSSP, x);
+			Node *q = CreateNode(x);
+			AddTail(DSSP, x);
 		}
 		cout << "Nhap 1 de them tiep,0 de ket thuc:";
 		cin >> them;
@@ -257,9 +257,9 @@ void InsertAfter(List&DSSP, Node *p, Node *q, SanPham x)
 			DSSP.pTail = q;
 	}
 	else
-		addTail(DSSP, x);
+		AddTail(DSSP, x);
 }
-Node* searchNode(List &DSSP)
+Node* SearchNode(List &DSSP)
 {
 	Node* p;
 	p = DSSP.pHead;
@@ -271,7 +271,7 @@ Node* searchNode(List &DSSP)
 		p = p->pnext;
 	return p;
 }
-void addHead(List&DSSP, Node *p)
+void AddHead(List&DSSP, Node *p)
 {
 	if (DSSP.pHead == NULL)
 	{
@@ -363,17 +363,17 @@ void TimKiem(List DSSP)
 	{
 		cin.ignore();
 		cout << "Nhap Ten San Pham Can Tim Kiem:";
-		cin.getline(x.Ten_sp, 100);
+		cin.getline(x.TenSP, 100);
 		p = DSSP.pHead;
 		while (p != NULL)
 		{
-			if (strcmp(x.Ten_sp, p->infor.Ten_sp) == 0)
+			if (strcmp(x.TenSP, p->infor.TenSP) == 0)
 			{
 				dem++;
 				if (dem == 1)
-					inDS(DSSP);
-				cout << setw(20) << left << p->infor.Ten_sp << setw(20) << p->infor.Ma << setw(20) << p->infor.Gia_Ban << setw(20) << p->infor.Sl << setw(20) << p->infor.Nha_cc << p->infor.Ngay_sx->ngay << "/" << p->infor.Ngay_sx->thang << "/" << setw(20) << p->infor.Ngay_sx->nam;
-				cout << p->infor.Han_sd->ngay << "/" << p->infor.Han_sd->thang << "/" << p->infor.Han_sd->nam << endl;
+					InDS(DSSP);
+				cout << setw(20) << left << p->infor.TenSP << setw(20) << p->infor.Ma << setw(20) << p->infor.GiaBan << setw(20) << p->infor.Sl << setw(20) << p->infor.NhaCC << p->infor.NgaySX->Ngay << "/" << p->infor.NgaySX->Thang << "/" << setw(20) << p->infor.NgaySX->Nam;
+				cout << p->infor.HanSD->Ngay << "/" << p->infor.HanSD->Thang << "/" << p->infor.HanSD->Nam << endl;
 			}
 			p = p->pnext;
 		}
@@ -392,9 +392,9 @@ void TimKiem(List DSSP)
 			{
 				dem++;
 				if (dem == 1)
-					inDS(DSSP);
-				cout << setw(20) << left << p->infor.Ten_sp << setw(20) << p->infor.Ma << setw(20) << p->infor.Gia_Ban << setw(20) << p->infor.Sl << setw(20) << p->infor.Nha_cc << p->infor.Ngay_sx->ngay << "/" << p->infor.Ngay_sx->thang << "/" << setw(20) << p->infor.Ngay_sx->nam;
-				cout << p->infor.Han_sd->ngay << "/" << p->infor.Han_sd->thang << "/" << p->infor.Han_sd->nam << endl;
+					InDS(DSSP);
+				cout << setw(20) << left << p->infor.TenSP << setw(20) << p->infor.Ma << setw(20) << p->infor.GiaBan << setw(20) << p->infor.Sl << setw(20) << p->infor.NhaCC << p->infor.NgaySX->Ngay << "/" << p->infor.NgaySX->Thang << "/" << setw(20) << p->infor.NgaySX->Nam;
+				cout << p->infor.HanSD->Ngay << "/" << p->infor.HanSD->Thang << "/" << p->infor.HanSD->Nam << endl;
 			}
 			p = p->pnext;
 		}
@@ -411,13 +411,13 @@ void TimKiem(List DSSP)
 		cin >> maxgia;
 		Node* p;
 		p = DSSP.pHead;
-		while (p != NULL && (mingia <= p->infor.Gia_Ban && p->infor.Gia_Ban <= maxgia))
+		while (p != NULL && (mingia <= p->infor.GiaBan && p->infor.GiaBan <= maxgia))
 		{
 			dem++;
 			if (dem == 1)
-				inDS(DSSP);
-			cout << setw(20) << left << p->infor.Ten_sp << setw(20) << p->infor.Ma << setw(20) << p->infor.Gia_Ban << setw(20) << p->infor.Sl << setw(20) << p->infor.Nha_cc << p->infor.Ngay_sx->ngay << "/" << p->infor.Ngay_sx->thang << "/" << setw(20) << p->infor.Ngay_sx->nam;
-			cout << p->infor.Han_sd->ngay << "/" << p->infor.Han_sd->thang << "/" << p->infor.Han_sd->nam << endl;
+				InDS(DSSP);
+			cout << setw(20) << left << p->infor.TenSP << setw(20) << p->infor.Ma << setw(20) << p->infor.GiaBan << setw(20) << p->infor.Sl << setw(20) << p->infor.NhaCC << p->infor.NgaySX->Ngay << "/" << p->infor.NgaySX->Thang << "/" << setw(20) << p->infor.NgaySX->Nam;
+			cout << p->infor.HanSD->Ngay << "/" << p->infor.HanSD->Thang << "/" << p->infor.HanSD->Nam << endl;
 			p = p->pnext;
 		}
 		if (dem == 0)
@@ -428,18 +428,18 @@ void TimKiem(List DSSP)
 void InThongTin(List DSSP)
 {
 	int w = 140;
-	inDS(DSSP);
+	InDS(DSSP);
 	for (int i = 0; i < w; i++) cout << "=";
 	cout << endl;
 	Node *p = DSSP.pHead;
 	while (p != NULL)
 	{
-		cout << setw(20) << left << p->infor.Ten_sp << setw(20) << p->infor.Ma << setw(20) << p->infor.Gia_Ban << setw(20) << p->infor.Sl << setw(20) << p->infor.Nha_cc << p->infor.Ngay_sx->ngay << "/" << p->infor.Ngay_sx->thang << "/" << setw(20) << p->infor.Ngay_sx->nam ;
-		cout << p->infor.Han_sd->ngay << "/" << p->infor.Han_sd->thang << "/" << p->infor.Han_sd->nam << endl;
+		cout << setw(20) << left << p->infor.TenSP << setw(20) << p->infor.Ma << setw(20) << p->infor.GiaBan << setw(20) << p->infor.Sl << setw(20) << p->infor.NhaCC << p->infor.NgaySX->Ngay << "/" << p->infor.NgaySX->Thang << "/" << setw(20) << p->infor.NgaySX->Nam;
+		cout << p->infor.HanSD->Ngay << "/" << p->infor.HanSD->Thang << "/" << p->infor.HanSD->Nam << endl;
 		p = p->pnext;
 	}
 }
-void inDS(List DSSP)
+void InDS(List DSSP)
 {
 	int w = 140;
 	for (int i = 0; i < w; i++) cout << "=";

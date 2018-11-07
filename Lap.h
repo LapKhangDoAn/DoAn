@@ -1,4 +1,4 @@
-
+#include <Windows.h>
 #define max 100
 typedef struct Date
 {
@@ -44,3 +44,4 @@ void ThemSP(List&DSSP);
 void SapXep(List DSSP);
 void  ThoiTien(int&tong, int TienKhach);
 void KiemTraHanSD(List DSSP);
+void textcolor(int x);

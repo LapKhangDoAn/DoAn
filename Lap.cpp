@@ -6,6 +6,12 @@ void TaoDS(List &DSSP)
 	DSSP.pHead = NULL;
 	DSSP.pTail = NULL;
 }
+void textcolor(int x)
+{
+	HANDLE mau;
+	mau = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(mau, x);
+}
 void KiemTraHanSD(List DSSP)
 {
 	Node* p;
@@ -190,6 +196,7 @@ void InHoaDon(ListSPDB DSSPDB, int &tong)
 	int w = 140;
 	tong = 0;
 	ThongTinHoaDon(DSSPDB);
+	textcolor(11);
 	for (int i = 0; i < w; i++) cout << "=";
 	cout << endl;
 	NodeSPDB *p = DSSPDB.pHead;
@@ -201,10 +208,11 @@ void InHoaDon(ListSPDB DSSPDB, int &tong)
 	}
 	for (int i = 0; i < w; i++) cout << "=";
 	cout << endl;
-	cout << setw((w - 20) / 2) << " " << "Tong cong:" << tong << " VND" << endl;
+	cout << setw(30) << " " << "Tong cong:" << tong << " VND" << endl;
 }
 void ThongTinHoaDon(ListSPDB DSSPDB)
 {
+	textcolor(11);
 	int w = 140;
 	for (int i = 0; i < w; i++) cout << "=";
 	cout << endl;
@@ -416,7 +424,7 @@ void TimKiem(List DSSP)
 			dem++;
 			if (dem == 1)
 				InDS(DSSP);
-			cout << setw(20) << left << p->infor.TenSP << setw(20) << p->infor.Ma << setw(20) << p->infor.GiaBan << setw(20) << p->infor.Sl << setw(20) << p->infor.NhaCC << p->infor.NgaySX->Ngay << "/" << p->infor.NgaySX->Thang << "/" << setw(20) << p->infor.NgaySX->Nam;
+			cout << setw(20) << left << p->infor.TenSP << setw(20) << p->infor.Ma << setw(20) << p->infor.GiaBan << setw(20) << p->infor.Sl << setw(20) << p->infor.NhaCC << p->infor.NgaySX->Ngay << "/" << p->infor.NgaySX->Thang << "/" << setw(18) << p->infor.NgaySX->Nam;
 			cout << p->infor.HanSD->Ngay << "/" << p->infor.HanSD->Thang << "/" << p->infor.HanSD->Nam << endl;
 			p = p->pnext;
 		}
@@ -434,7 +442,7 @@ void InThongTin(List DSSP)
 	Node *p = DSSP.pHead;
 	while (p != NULL)
 	{
-		cout << setw(20) << left << p->infor.TenSP << setw(20) << p->infor.Ma << setw(20) << p->infor.GiaBan << setw(20) << p->infor.Sl << setw(20) << p->infor.NhaCC << p->infor.NgaySX->Ngay << "/" << p->infor.NgaySX->Thang << "/" << setw(20) << p->infor.NgaySX->Nam;
+		cout << setw(20) << left << p->infor.TenSP << setw(20) << p->infor.Ma << setw(20) << p->infor.GiaBan << setw(20) << p->infor.Sl << setw(20) << p->infor.NhaCC << p->infor.NgaySX->Ngay << "/" << p->infor.NgaySX->Thang << "/" << setw(18) << p->infor.NgaySX->Nam;
 		cout << p->infor.HanSD->Ngay << "/" << p->infor.HanSD->Thang << "/" << p->infor.HanSD->Nam << endl;
 		p = p->pnext;
 	}

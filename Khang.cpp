@@ -138,6 +138,27 @@ SanPham NhapSP()
 	return x;
 }
 
+void NhapDSFile(List &DSSP)
+{
+	ifstream File;
+	File.open("DoAn.txt");
+	int n;
+	File >> n;
+	for (int i = 0; i < n; i++)
+	{
+		SanPham x;
+		File >> x.TenSP;
+		File >> x.Ma;
+		File >> x.GiaBan;
+		File >> x.Sl;
+		File >> x.NhaCC;
+		File >> x.NgaySX->Ngay >> x.NgaySX->Thang >> x.NgaySX->Nam;
+		File >> x.HanSD->Ngay >> x.HanSD->Thang >> x.HanSD->Nam;
+		AddTail(DSSP, x);
+	}
+	File.close();
+}
+
 void HuyDS(List &DSSP)
 {
 	Node *p;

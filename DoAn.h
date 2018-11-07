@@ -4,8 +4,10 @@
 #include <iomanip>
 #include <math.h>
 #include <iostream>
+#include "fstream"
 #include "Lap.h"
 #include "Khang.h"
+
 
 #define max 100
 

@@ -63,3 +63,4 @@ void InThongTinTongSanPhamDB(ListTongSPDB DSTongSPDB);
 void InDSTongSanPhamDB(ListTongSPDB DSTongSPDB);
 void SanPhamBanChayNhat(ListTongSPDB DSTongSPDB);
 void LoiNhuan(ListTongSPDB DSTongSPDB, int TongDoanhThu);
+void NhapDSFile(List &DSSP);

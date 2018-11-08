@@ -14,6 +14,7 @@ void textcolor(int x)
 }
 void KiemTraHanSD(List DSSP)
 {
+	textcolor(14);
 	Node* p;
 	p = DSSP.pHead;
 	cin.ignore();
@@ -25,6 +26,7 @@ void KiemTraHanSD(List DSSP)
 	int d, m, y;
 	cout << "Nhap ngay hien tai:";
 	cin >> d >> m >> y;
+	textcolor(12);
 	if (p->infor.HanSD->Nam > y)
 		cout << "San Pham Con Han Su Dung";
 	else
@@ -43,7 +45,7 @@ void KiemTraHanSD(List DSSP)
 						if (p->infor.HanSD->Ngay < d)
 							cout << "San Pham Da Het Han Su Dung";
 						else cout << "San Pham Con Han Su Dung";
-
+	textcolor(15);
 }
 void SapXep(List DSSP)
 {
@@ -227,13 +229,19 @@ void ThemSP(List&DSSP)
 	int them = 1;
 	while (them == 1)
 	{
+		textcolor(14);
 		cout << "Nhap thong tin san pham can them:" << endl;
+		textcolor(15);
 		SanPham x = NhapSP();
+		textcolor(12);
 		cout << "1.Them san pham vao dau danh sach" << endl;
 		cout << "2.Them san pham B vào sau san pham A co trong danh sach" << endl;
 		cout << "3.Them san pham vao cuoi danh sach" << endl;
+		textcolor(10);
+		cout << "Ban chon cach them so:";
 		int chon;
 		cin >> chon;
+		textcolor(15);
 		if (chon == 1)
 		{
 			Node *q = CreateNode(x);
@@ -243,7 +251,6 @@ void ThemSP(List&DSSP)
 		{
 			Node *q = CreateNode(x);
 			Node *p = SearchNode(DSSP);
-			cout << p->infor.Ma;
 			InsertAfter(DSSP, p, q, x);
 		}
 		if (chon == 3)
@@ -362,11 +369,16 @@ void TimKiem(List DSSP)
 	SanPham x;
 	int dem = 0;
 	int chon;
+	textcolor(10);
 	cout << "Danh muc tim kiem:" << endl;
+	textcolor(12);
 	cout << "1. Tim kiem theo ten san pham" << endl;
 	cout << "2. Tim kiem theo ma san pham" << endl;
 	cout << "3. Tim kiem theo khoang gia" << endl;
+	textcolor(14);
+	cout << "Ban chon cach tim kiem so:";
 	cin >> chon;
+	textcolor(15);
 	if (chon == 1)
 	{
 		cin.ignore();
@@ -429,7 +441,11 @@ void TimKiem(List DSSP)
 			p = p->pnext;
 		}
 		if (dem == 0)
+		{
+			textcolor(12);
 			cout << "San Pham Can Tim Khong Co Trong Cua Hang" << endl;
+			textcolor(15);
+		}
 	}
 
 }

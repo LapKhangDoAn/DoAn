@@ -272,6 +272,7 @@ void TraHang(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB)
 	do
 	{
 		char x[20];
+		textcolor(11);
 		cout << "Nhap ten san pham can tra:";
 		cin.getline(x, 20);
 		NodeSPDB* q;
@@ -305,6 +306,7 @@ void TraHang(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB)
 		}
 		else
 			cout << "Ban khong co mua mat hang nay!" << endl;
+		textcolor(15);
 		cout << "Nhan phim bat ki de tiep tuc, nhan ESC de dung tra hang!" << endl;
 	} while (_getch() != 27);
 }
@@ -383,16 +385,21 @@ void SanPhamBanChayNhat(ListTongSPDB DSTongSPDB)
 	char best[20];
 	banchay = p->infor.TongSldb;
 	strcpy_s(best, p->infor.TenTongSPDB);
-	while (p != NULL)
+	if (DSTongSPDB.pHead == NULL)
+		cout << "Chua ban duoc san pham nao!" << endl;
+	else
 	{
-		if (banchay < p->infor.TongSldb)
+		while (p != NULL)
 		{
-			banchay = p->infor.TongSldb;
-			strcpy_s(best, p->infor.TenTongSPDB);
+			if (banchay < p->infor.TongSldb)
+			{
+				banchay = p->infor.TongSldb;
+				strcpy_s(best, p->infor.TenTongSPDB);
+			}
+			p = p->pnext;
 		}
-		p = p->pnext;
+		cout << "San pham ban chay nhat cua hang la " << best << ", ban duoc " << banchay << " san pham!" << endl;
 	}
-	cout << "San pham ban chay nhat cua hang la " << best << ", ban duoc " << banchay << " san pham!" << endl;
 }
 
 void LoiNhuan(ListTongSPDB DSTongSPDB, int TongDoanhThu)

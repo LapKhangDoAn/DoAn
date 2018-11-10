@@ -462,6 +462,8 @@ void InThongTin(List DSSP)
 		cout << p->infor.HanSD->Ngay << "/" << p->infor.HanSD->Thang << "/" << p->infor.HanSD->Nam << endl;
 		p = p->pnext;
 	}
+	for (int i = 0; i < w; i++) cout << "=";
+	cout << endl;
 }
 void InDS(List DSSP)
 {

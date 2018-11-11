@@ -119,7 +119,6 @@ void NhapDS(List &DSSP)
 SanPham NhapSP()
 {
 	SanPham x;
-	cin.ignore();
 	cout << "Nhap ten san pham:";
 	cin.getline(x.TenSP, 100);
 	cout << "Nhap ma san pham:";
@@ -193,12 +192,33 @@ void BoSungSP(List &DSSP)
 	textcolor(15);
 }
 
-void MuaSP(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB, int &tong, int &TongDoanhThu)
+void MuaSPvaThanhToan(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB, int &tong, int &TongDoanhThu)
 {
-	cin.ignore();
-	do
+	textcolor(10);
+	cout << "MUA HANG" << endl;
+	MuaHang(DSSP, DSSPDB, DSTongSPDB, tong, TongDoanhThu);
+	textcolor(6);
+	cout << "TRA HANG" << endl;
+	TraHang(DSSP, DSSPDB, DSTongSPDB);
+	KhuyenMai(DSSPDB);
+	cout << endl;
+	InHoaDon(DSSPDB, tong);
+	TongDoanhThu = TongDoanhThu + tong;
+	int TienKhach = 0;
+	textcolor(12);
+	cout << "THANH TOAN HOA DON" << endl;
+	ThoiTien(tong, TienKhach);
+	textcolor(15);
+	HuyDSSPDB(DSSPDB);
+}
+
+void MuaHang(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB, int &tong, int &TongDoanhThu)
+{
+	char ch = 'c';
+	while (ch == 'c')
 	{
 		char x[20];
+		textcolor(10);
 		cout << "Nhap ten san pham ban muon mua:";
 		cin.getline(x, 20);
 		Node* p;
@@ -253,26 +273,20 @@ void MuaSP(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB, int &tong, in
 		}
 		else
 			cout << "Cua hang chua co mat hang nay!" << endl;
-		cout << "Nhan phim bat ki de tiep tuc, nhan ESC de ket thuc mua hang!" << endl;
-	} while (_getch() != 27);
-	TraHang(DSSP, DSSPDB, DSTongSPDB);
-	KhuyenMai(DSSPDB);
-	cout << endl;
-	InHoaDon(DSSPDB, tong);
-	TongDoanhThu = TongDoanhThu + tong;
-	int TienKhach = 0;
-	textcolor(4);
-	ThoiTien(tong, TienKhach);
-	textcolor(15);
-	HuyDSSPDB(DSSPDB);
+		textcolor(15);
+		cout << "Nhap ki tu 'c' de tiep tuc, nhap ki tu 'k' de ket thuc mua hang:";
+		cin >> ch;
+		cin.ignore();
+	}
 }
 
 void TraHang(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB)
 {
-	do
+	char ch = 'c';
+	while (ch == 'c')
 	{
 		char x[20];
-		textcolor(11);
+		textcolor(6);
 		cout << "Nhap ten san pham can tra:";
 		cin.getline(x, 20);
 		NodeSPDB* q;
@@ -307,8 +321,10 @@ void TraHang(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB)
 		else
 			cout << "Ban khong co mua mat hang nay!" << endl;
 		textcolor(15);
-		cout << "Nhan phim bat ki de tiep tuc, nhan ESC de dung tra hang!" << endl;
-	} while (_getch() != 27);
+		cout << "Nhap ki tu 'c' de tiep tuc, nhap ki tu 'k' de ket thuc mua hang:";
+		cin >> ch;
+		cin.ignore();
+	}
 }
 
 void KhuyenMai(ListSPDB &DSSPDB)

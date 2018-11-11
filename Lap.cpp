@@ -76,7 +76,7 @@ void  ThoiTien(int&tong, int TienKhach)
 		cin >> TienKhach;
 	}
 	int tienthoi = TienKhach - tong;
-	cout << "\nTien thoi: " << tienthoi;
+	cout << "Tien thoi: " << tienthoi;
 	if (tienthoi == 0)
 		cout << "\nKhach da tra du tien!" << endl;
 	else
@@ -231,7 +231,6 @@ void ThemSP(List&DSSP)
 	{
 		textcolor(14);
 		cout << "Nhap thong tin san pham can them:" << endl;
-		textcolor(15);
 		SanPham x = NhapSP();
 		textcolor(12);
 		cout << "1.Them san pham vao dau danh sach" << endl;

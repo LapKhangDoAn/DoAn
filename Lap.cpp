@@ -17,9 +17,8 @@ void KiemTraHanSD(List DSSP)
 	textcolor(14);
 	Node* p;
 	p = DSSP.pHead;
-	cin.ignore();
 	char a[100];
-	cout << "Nhap ma san pham can kiem tra han su dung:";
+	cout << "Nhap ten san pham can kiem tra han su dung:";
 	cin.getline(a, 100);
 	while (p != NULL && strcmp(a, p->infor.TenSP) != 0)
 		p = p->pnext;
@@ -259,6 +258,7 @@ void ThemSP(List&DSSP)
 		}
 		cout << "Nhap 1 de them tiep,0 de ket thuc:";
 		cin >> them;
+		cin.ignore();
 	}
 }
 void InsertAfter(List&DSSP, Node *p, Node *q, SanPham x)

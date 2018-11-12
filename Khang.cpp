@@ -367,20 +367,26 @@ void HuyDSSPDB(ListSPDB &DSSPDB)
 
 void InThongTinTongSanPhamDB(ListTongSPDB DSTongSPDB)
 {
-	int w = 60;
-	textcolor(10);
-	InDSTongSanPhamDB(DSTongSPDB);
-	for (int i = 0; i < w; i++) cout << "=";
-	cout << endl;
 	NodeTongSPDB *p = DSTongSPDB.pHead;
-	while (p != NULL)
+	textcolor(10);
+	if (p == NULL)
+		cout << "Cua hang chua ban duoc san pham nao!" << endl;
+	else
 	{
-		cout << setw(40) << left << p->infor.TenTongSPDB << p->infor.TongSldb << endl;
-		p = p->pnext;
+		int w = 60;
+		textcolor(10);
+		InDSTongSanPhamDB(DSTongSPDB);
+		for (int i = 0; i < w; i++) cout << "=";
+		cout << endl;
+		while (p != NULL)
+		{
+			cout << setw(40) << left << p->infor.TenTongSPDB << p->infor.TongSldb << endl;
+			p = p->pnext;
+		}
+		textcolor(12);
+		SanPhamBanChayNhat(DSTongSPDB);
+		textcolor(15);
 	}
-	textcolor(12);
-	SanPhamBanChayNhat(DSTongSPDB);
-	textcolor(15);
 }
 void InDSTongSanPhamDB(ListTongSPDB DSTongSPDB)
 {
@@ -401,21 +407,16 @@ void SanPhamBanChayNhat(ListTongSPDB DSTongSPDB)
 	char best[20];
 	banchay = p->infor.TongSldb;
 	strcpy_s(best, p->infor.TenTongSPDB);
-	if (DSTongSPDB.pHead == NULL)
-		cout << "Chua ban duoc san pham nao!" << endl;
-	else
+	while (p != NULL)
 	{
-		while (p != NULL)
+		if (banchay < p->infor.TongSldb)
 		{
-			if (banchay < p->infor.TongSldb)
-			{
-				banchay = p->infor.TongSldb;
-				strcpy_s(best, p->infor.TenTongSPDB);
-			}
-			p = p->pnext;
+			banchay = p->infor.TongSldb;
+			strcpy_s(best, p->infor.TenTongSPDB);
 		}
-		cout << "San pham ban chay nhat cua hang la " << best << ", ban duoc " << banchay << " san pham!" << endl;
+		p = p->pnext;
 	}
+		cout << "San pham ban chay nhat cua hang la " << best << ", ban duoc " << banchay << " san pham!" << endl;
 }
 
 void LoiNhuan(ListTongSPDB DSTongSPDB, int TongDoanhThu)

@@ -145,51 +145,52 @@ void  ThoiTien(int&tong, int TienKhach)
 				cuckeo = 1;
 			}
 		}
+		cout << endl;
+		cout << "Thoi lai gom:" << endl;
 		if (dem500k != 0)
 		{
-			cout << "\nCo" << dem500k << " to 500.000d";
+			cout << dem500k << " to 500.000d" << endl;
 		}
 		if (dem200k != 0)
 		{
-			cout << "\nCo " << dem200k << " to 200.000d";
+			cout << dem200k << " to 200.000d" << endl;
 		}
 		if (dem100k != 0)
 		{
-			cout << "\nCo " << dem100k << " to 100.000d";
+			cout << dem100k << " to 100.000d" << endl;
 		}
 		if (dem50k != 0)
 		{
-			cout << "\nCo " << dem50k << " to 50.000d";
+			cout << dem50k << " to 50.000d" << endl;
 		}
 		if (dem20k != 0)
 		{
-			cout << "\nCo " << dem20k << " to 20.000d";
+			cout << dem20k << " to 20.000d" << endl;
 		}
 		if (dem10k != 0)
 		{
-			cout << "\nCo " << dem10k << " to 10.000d";
+			cout << dem10k << " to 10.000d" << endl;
 		}
 		if (dem5k != 0)
 		{
-			cout << "\nCo " << dem5k << " to 5.000d";
+			cout << dem5k << " to 5.000d" << endl;
 		}
 		if (dem2k != 0)
 		{
-			cout << "\nCo " << dem2k << " to 2.000d";
+			cout << dem2k << " to 2.000d" << endl;
 		}
 		if (dem1k != 0)
 		{
-			cout << "\nCo " << dem1k << " to 1.000d";
+			cout << dem1k << " to 1.000d" << endl;
 		}
 		if (dem500d != 0)
 		{
-			cout << "\nCo " << dem500d << " to 500d";
+			cout << dem500d << " to 500d" << endl;
 		}
 		if (cuckeo != 0)
 		{
-			cout << "\n1 cuc keo";
+			cout << " Cuc keo" << endl;
 		}
-		cout << endl;
 	}
 }
 void InHoaDon(ListSPDB DSSPDB, int &tong)
@@ -391,7 +392,9 @@ void TimKiem(List DSSP)
 				dem++;
 				if (dem == 1)
 					InDS(DSSP);
-				cout << setw(20) << left << p->infor.TenSP << setw(20) << p->infor.Ma << setw(20) << p->infor.GiaBan << setw(20) << p->infor.Sl << setw(20) << p->infor.NhaCC << p->infor.NgaySX->Ngay << "/" << p->infor.NgaySX->Thang << "/" << setw(20) << p->infor.NgaySX->Nam;
+				cout << setw(20) << left << p->infor.TenSP << setw(20) << p->infor.Ma << setw(20) << p->infor.GiaBan;
+				cout << setw(20) << p->infor.Sl << setw(20) << p->infor.NhaCC;
+				cout << p->infor.NgaySX->Ngay << "/" << p->infor.NgaySX->Thang << "/" << setw(18) << p->infor.NgaySX->Nam;
 				cout << p->infor.HanSD->Ngay << "/" << p->infor.HanSD->Thang << "/" << p->infor.HanSD->Nam << endl;
 			}
 			p = p->pnext;
@@ -412,7 +415,9 @@ void TimKiem(List DSSP)
 				dem++;
 				if (dem == 1)
 					InDS(DSSP);
-				cout << setw(20) << left << p->infor.TenSP << setw(20) << p->infor.Ma << setw(20) << p->infor.GiaBan << setw(20) << p->infor.Sl << setw(20) << p->infor.NhaCC << p->infor.NgaySX->Ngay << "/" << p->infor.NgaySX->Thang << "/" << setw(20) << p->infor.NgaySX->Nam;
+				cout << setw(20) << left << p->infor.TenSP << setw(20) << p->infor.Ma << setw(20) << p->infor.GiaBan;
+				cout << setw(20) << p->infor.Sl << setw(20) << p->infor.NhaCC;
+				cout << p->infor.NgaySX->Ngay << "/" << p->infor.NgaySX->Thang << "/" << setw(18) << p->infor.NgaySX->Nam;
 				cout << p->infor.HanSD->Ngay << "/" << p->infor.HanSD->Thang << "/" << p->infor.HanSD->Nam << endl;
 			}
 			p = p->pnext;
@@ -435,7 +440,9 @@ void TimKiem(List DSSP)
 			dem++;
 			if (dem == 1)
 				InDS(DSSP);
-			cout << setw(20) << left << p->infor.TenSP << setw(20) << p->infor.Ma << setw(20) << p->infor.GiaBan << setw(20) << p->infor.Sl << setw(20) << p->infor.NhaCC << p->infor.NgaySX->Ngay << "/" << p->infor.NgaySX->Thang << "/" << setw(18) << p->infor.NgaySX->Nam;
+			cout << setw(20) << left << p->infor.TenSP << setw(20) << p->infor.Ma << setw(20) << p->infor.GiaBan;
+			cout << setw(20) << p->infor.Sl << setw(20) << p->infor.NhaCC;
+			cout << p->infor.NgaySX->Ngay << "/" << p->infor.NgaySX->Thang << "/" << setw(18) << p->infor.NgaySX->Nam;
 			cout << p->infor.HanSD->Ngay << "/" << p->infor.HanSD->Thang << "/" << p->infor.HanSD->Nam << endl;
 			p = p->pnext;
 		}

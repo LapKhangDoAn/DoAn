@@ -196,7 +196,7 @@ void MuaSPvaThanhToan(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB, in
 {
 	textcolor(10);
 	cout << "MUA HANG" << endl;
-	MuaHang(DSSP, DSSPDB, DSTongSPDB, tong, TongDoanhThu);
+	BanSanPham(DSSP, DSSPDB, DSTongSPDB, tong, TongDoanhThu);
 	textcolor(6);
 	cout << "TRA HANG" << endl;
 	TraHang(DSSP, DSSPDB, DSTongSPDB);
@@ -212,14 +212,14 @@ void MuaSPvaThanhToan(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB, in
 	HuyDSSPDB(DSSPDB);
 }
 
-void MuaHang(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB, int &tong, int &TongDoanhThu)
+void BanSanPham(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB, int &tong, int &TongDoanhThu)
 {
 	char ch = 'c';
 	while (ch == 'c')
 	{
 		char x[20];
 		textcolor(10);
-		cout << "Nhap ten san pham ban muon mua:";
+		cout << "Nhap ten san pham khach hang muon mua:";
 		cin.getline(x, 20);
 		Node* p;
 		p = DSSP.pHead;
@@ -228,7 +228,7 @@ void MuaHang(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB, int &tong, 
 		if (p != NULL)
 		{
 			int sl = 0, conlai = 0;
-			cout << "Nhap so luong muon mua:";
+			cout << "Nhap so luong khach hang muon mua:";
 			cin >> sl;
 			cin.ignore();
 			conlai = p->infor.Sl - sl;
@@ -287,7 +287,7 @@ void TraHang(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB)
 	{
 		char x[20];
 		textcolor(6);
-		cout << "Nhap ten san pham can tra:";
+		cout << "Nhap ten san pham khach hang muon tra:";
 		cin.getline(x, 20);
 		NodeSPDB* q;
 		q = DSSPDB.pHead;
@@ -304,12 +304,12 @@ void TraHang(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB)
 			while (s != NULL && strcmp(s->infor.TenTongSPDB, x) != 0)
 				s = s->pnext;
 			int sl = 0, hienco = 0;
-			cout << "Nhap so luong muon tra lai:";
+			cout << "Nhap so luong khach hang muon tra lai:";
 			cin >> sl;
 			cin.ignore();
 			hienco = q->infor.Sldb;
 			if (sl > hienco)
-				cout << "Ban chi mua co " << q->infor.Sldb << " san pham nay!" << endl;
+				cout << "Khach hang chi mua co " << q->infor.Sldb << " san pham nay!" << endl;
 			else
 			{
 				cout << "Tra lai thanh cong!" << endl;
@@ -319,7 +319,7 @@ void TraHang(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB)
 			}
 		}
 		else
-			cout << "Ban khong co mua mat hang nay!" << endl;
+			cout << "Khach hang khong co mua mat hang nay!" << endl;
 		textcolor(15);
 		cout << "Nhap ki tu 'c' de tiep tuc, nhap ki tu 'k' de ket thuc mua hang:";
 		cin >> ch;

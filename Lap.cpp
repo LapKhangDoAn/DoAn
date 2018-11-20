@@ -15,6 +15,68 @@ void textcolor(int x)
 void KiemTraHanSD(List DSSP)
 {
 	textcolor(14);
+	cout << "1.Kiem tra han su dung mot san pham bat ki:" << endl;
+	cout << "2.Kiem tra han su dung cua tat ca cac san pham:" << endl;
+	int chon;
+	textcolor(12);
+	cout << "Thuc hien kiem tra:";
+	cin >> chon;
+	if (chon == 1)
+	{
+		cin.ignore();
+		KiemTraHanSD1(DSSP);
+	}
+	if (chon == 2)
+	{
+		textcolor(13);
+		KiemTraHanSD3(DSSP);
+	}
+	textcolor(15);
+}
+void KiemTraHanSD3(List DSSP)
+{
+	Node *p = DSSP.pHead;
+	int d, m, y;
+	cout << "Nhap ngay hien tai:";
+	cin >> d >> m >> y;
+	cout << "Nhung san pham da het han su dung:" << endl;
+	InDS(DSSP);
+	while (p != NULL)
+	{
+		if (KiemTraHanSD2(DSSP,p,y,m,d) == 0)
+		{
+			cout << setw(20) << left << p->infor.TenSP << setw(20) << p->infor.Ma << setw(20) << p->infor.GiaBan;
+			cout << setw(20) << p->infor.Sl << setw(20) << p->infor.NhaCC;
+			cout << p->infor.NgaySX->Ngay << "/" << p->infor.NgaySX->Thang << "/" << setw(18) << p->infor.NgaySX->Nam;
+			cout << p->infor.HanSD->Ngay << "/" << p->infor.HanSD->Thang << "/" << p->infor.HanSD->Nam << endl;
+		}
+		p = p->pnext;
+	}
+}
+int KiemTraHanSD2(List DSSP, Node *p, int &y, int &m, int &d)
+{
+	if (p->infor.HanSD->Nam > y)
+		return 1;
+	else
+		if (p->infor.HanSD->Nam < y)
+			return 0;
+		else
+			if (p->infor.HanSD->Thang > m)
+					return 1;
+			else
+				if (p->infor.HanSD->Thang < m)
+						return 0;
+				else
+					if (p->infor.HanSD->Ngay > d)
+							return 1;
+					else
+						if (p->infor.HanSD->Ngay < d)
+								return 0;
+						else return 1;
+}
+void KiemTraHanSD1(List DSSP)
+{
+	textcolor(14);
 	Node* p;
 	p = DSSP.pHead;
 	char a[100];
@@ -413,8 +475,7 @@ void TimKiem(List DSSP)
 			if (strcmp(x.Ma, p->infor.Ma) == 0)
 			{
 				dem++;
-				if (dem == 1)
-					InDS(DSSP);
+				InDS(DSSP);
 				cout << setw(20) << left << p->infor.TenSP << setw(20) << p->infor.Ma << setw(20) << p->infor.GiaBan;
 				cout << setw(20) << p->infor.Sl << setw(20) << p->infor.NhaCC;
 				cout << p->infor.NgaySX->Ngay << "/" << p->infor.NgaySX->Thang << "/" << setw(18) << p->infor.NgaySX->Nam;
@@ -435,15 +496,18 @@ void TimKiem(List DSSP)
 		cin >> maxgia;
 		Node* p;
 		p = DSSP.pHead;
-		while (p != NULL && (mingia <= p->infor.GiaBan && p->infor.GiaBan <= maxgia))
+		while (p != NULL)
 		{
-			dem++;
-			if (dem == 1)
-				InDS(DSSP);
-			cout << setw(20) << left << p->infor.TenSP << setw(20) << p->infor.Ma << setw(20) << p->infor.GiaBan;
-			cout << setw(20) << p->infor.Sl << setw(20) << p->infor.NhaCC;
-			cout << p->infor.NgaySX->Ngay << "/" << p->infor.NgaySX->Thang << "/" << setw(18) << p->infor.NgaySX->Nam;
-			cout << p->infor.HanSD->Ngay << "/" << p->infor.HanSD->Thang << "/" << p->infor.HanSD->Nam << endl;
+			if (mingia <= p->infor.GiaBan && p->infor.GiaBan <= maxgia)
+			{
+				dem++;
+				if (dem == 1)
+					InDS(DSSP);
+				cout << setw(20) << left << p->infor.TenSP << setw(20) << p->infor.Ma << setw(20) << p->infor.GiaBan;
+				cout << setw(20) << p->infor.Sl << setw(20) << p->infor.NhaCC;
+				cout << p->infor.NgaySX->Ngay << "/" << p->infor.NgaySX->Thang << "/" << setw(18) << p->infor.NgaySX->Nam;
+				cout << p->infor.HanSD->Ngay << "/" << p->infor.HanSD->Thang << "/" << p->infor.HanSD->Nam << endl;
+			}
 			p = p->pnext;
 		}
 		if (dem == 0)

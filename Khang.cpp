@@ -374,7 +374,7 @@ void InThongTinTongSanPhamDB(ListTongSPDB DSTongSPDB)
 	else
 	{
 		int w = 60;
-		textcolor(10);
+		textcolor(9);
 		InDSTongSanPhamDB(DSTongSPDB);
 		for (int i = 0; i < w; i++) cout << "=";
 		cout << endl;
@@ -383,7 +383,7 @@ void InThongTinTongSanPhamDB(ListTongSPDB DSTongSPDB)
 			cout << setw(40) << left << p->infor.TenTongSPDB << p->infor.TongSldb << endl;
 			p = p->pnext;
 		}
-		textcolor(12);
+		textcolor(3);
 		SanPhamBanChayNhat(DSTongSPDB);
 		textcolor(15);
 	}
@@ -416,7 +416,17 @@ void SanPhamBanChayNhat(ListTongSPDB DSTongSPDB)
 		}
 		p = p->pnext;
 	}
-		cout << "San pham ban chay nhat cua hang la " << best << ", ban duoc " << banchay << " san pham!" << endl;
+	cout << "San pham ban chay nhat cua hang la ";
+	p = DSTongSPDB.pHead;
+	while (p != NULL)
+	{
+		if (banchay == p->infor.TongSldb)
+		{
+			cout << p->infor.TenTongSPDB << ", ";
+		}
+		p = p->pnext;
+	}
+	cout << "ban duoc " << banchay << " san pham!" << endl;
 }
 
 void LoiNhuan(ListTongSPDB DSTongSPDB, int TongDoanhThu)

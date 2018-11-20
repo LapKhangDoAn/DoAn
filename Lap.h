@@ -43,5 +43,8 @@ void InsertAfter(List&DSSP, Node *p, Node *q, SanPham x);
 void ThemSP(List&DSSP);
 void SapXep(List DSSP);
 void  ThoiTien(int&tong, int TienKhach);
+void KiemTraHanSD1(List DSSP);
+int KiemTraHanSD2(List DSSP, Node *p, int &y, int &m, int &d);
+void KiemTraHanSD3(List DSSP);
 void KiemTraHanSD(List DSSP);
 void textcolor(int x);

@@ -1,5 +1,7 @@
 #include <Windows.h>
+
 #define max 100
+
 typedef struct Date
 {
 	int Ngay;
@@ -18,33 +20,33 @@ typedef struct SanPham
 	Date HanSD[max];
 };
 
-struct Node
+struct NodeSP
 {
 	SanPham infor;
-	Node *pnext;
+	NodeSP *pnext;
 };
 
-struct List
+struct ListSP
 {
-	Node *pHead;
-	Node *pTail;
+	NodeSP *pHead;
+	NodeSP *pTail;
 };
 
-void TaoDS(List &DSSP);
-void InDS(List DSSP);
-void InThongTin(List DSSP);
-void TimKiem(List DSSP);
-int RemoveX(List&DSSP, char x[]);
-void RemoveAfter(List &DSSP);
-void RemoveHead(List&DSSP);
-void AddHead(List&DSSP, Node *p);
-Node* SearchNode(List &DSSP);
-void InsertAfter(List&DSSP, Node *p, Node *q, SanPham x);
-void ThemSP(List&DSSP);
-void SapXep(List DSSP);
+void TaoDS(ListSP &DSSP);
+void InDS(ListSP DSSP);
+void InThongTin(ListSP DSSP);
+void TimKiem(ListSP DSSP);
+int RemoveX(ListSP &DSSP, char x[]);
+void RemoveAfter(ListSP &DSSP);
+void RemoveHead(ListSP &DSSP);
+void AddHead(ListSP &DSSP, NodeSP *p);
+NodeSP* SearchNode(ListSP &DSSP);
+void InsertAfter(ListSP &DSSP, NodeSP *p, NodeSP *q, SanPham x);
+void ThemSP(ListSP &DSSP);
+void SapXep(ListSP DSSP);
 void  ThoiTien(int&tong, int TienKhach);
-void KiemTraHanSD1(List DSSP);
-int KiemTraHanSD2(List DSSP, Node *p, int &y, int &m, int &d);
-void KiemTraHanSD3(List DSSP);
-void KiemTraHanSD(List DSSP);
+void KiemTraHanSD1(ListSP DSSP);
+int KiemTraHanSD2(ListSP DSSP, NodeSP *p, int &y, int &m, int &d);
+void KiemTraHanSD3(ListSP DSSP);
+void KiemTraHanSD(ListSP DSSP);
 void textcolor(int x);

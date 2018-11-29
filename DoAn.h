@@ -8,7 +8,6 @@
 #include "Lap.h"
 #include "Khang.h"
 
-
 #define max 100
 
 using namespace std;

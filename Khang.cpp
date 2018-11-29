@@ -1,10 +1,10 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include "DoAn.h"
 
-Node* CreateNode(SanPham x)
+NodeSP* CreateNode(SanPham x)
 {
-	Node *p;
-	p = new Node;
+	NodeSP *p;
+	p = new NodeSP;
 	if (p == NULL)
 	{
 		cout << "Khong tao Node thanh cong";
@@ -43,9 +43,9 @@ NodeTongSPDB* CreateNodeTongSPDB(TongSanPhamDaBan x)
 	return p;
 }
 
-void AddTail(List &DSSP, SanPham x)
+void AddTail(ListSP &DSSP, SanPham x)
 {
-	Node *p = CreateNode(x);
+	NodeSP *p = CreateNode(x);
 	if (DSSP.pHead == NULL)
 	{
 		DSSP.pHead = p;
@@ -103,19 +103,6 @@ void ThemTongSPDB(ListTongSPDB &DSTongSPDB, TongSanPhamDaBan x)
 	}
 }
 
-void NhapDS(List &DSSP)
-{
-	int n = 0;
-	cout << "Nhap so san pham:";
-	cin >> n;
-	for (int i = 0; i < n; i++)
-	{
-		cout << "Nhap thong tin san pham:" << endl;
-		SanPham x = NhapSP();
-		AddTail(DSSP, x);
-	}
-}
-
 SanPham NhapSP()
 {
 	SanPham x;
@@ -137,7 +124,7 @@ SanPham NhapSP()
 	return x;
 }
 
-void NhapDSFile(List &DSSP)
+void NhapDSFile(ListSP &DSSP) // Nhập danh sách các sản phẩm đang kinh doanh của cửa hàng từ file text
 {
 	ifstream File;
 	File.open("DoAn.txt");
@@ -158,9 +145,9 @@ void NhapDSFile(List &DSSP)
 	File.close();
 }
 
-void HuyDS(List &DSSP)
+void HuyDS(ListSP &DSSP) 
 {
-	Node *p;
+	NodeSP *p;
 	while (DSSP.pHead != NULL)
 	{
 		p = DSSP.pHead;
@@ -170,9 +157,9 @@ void HuyDS(List &DSSP)
 	DSSP.pTail = NULL;
 }
 
-void BoSungSP(List &DSSP)
+void BoSungSP(ListSP &DSSP) // Bổ sung số lượng sản phẩm
 {
-	Node* p;
+	NodeSP* p;
 	p = DSSP.pHead;
 	char x[20];
 	textcolor(12);
@@ -192,7 +179,7 @@ void BoSungSP(List &DSSP)
 	textcolor(15);
 }
 
-void MuaSPvaThanhToan(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB, int &tong, int &TongDoanhThu)
+void BanSPvaThanhToan(ListSP &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB, int &tong, int &TongDoanhThu)
 {
 	textcolor(10);
 	cout << "MUA HANG" << endl;
@@ -212,7 +199,7 @@ void MuaSPvaThanhToan(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB, in
 	HuyDSSPDB(DSSPDB);
 }
 
-void BanSanPham(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB, int &tong, int &TongDoanhThu)
+void BanSanPham(ListSP &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB, int &tong, int &TongDoanhThu)
 {
 	char ch = 'c';
 	while (ch == 'c')
@@ -221,11 +208,11 @@ void BanSanPham(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB, int &ton
 		textcolor(10);
 		cout << "Nhap ten san pham khach hang muon mua:";
 		cin.getline(x, 20);
-		Node* p;
+		NodeSP* p;
 		p = DSSP.pHead;
 		while (p != NULL && strcmp(p->infor.TenSP, x) != 0)
 			p = p->pnext;
-		if (p != NULL)
+		if (p != NULL) // Xử lý mua hàng
 		{
 			int sl = 0, conlai = 0;
 			cout << "Nhap so luong khach hang muon mua:";
@@ -234,7 +221,7 @@ void BanSanPham(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB, int &ton
 			conlai = p->infor.Sl - sl;
 			if (conlai < 0)
 				cout << "Khong du so luong, cua hang chi con lai " << p->infor.Sl << " san pham nay!" << endl;
-			else
+			else // Cập nhật lại thông tin của DSSPDB và DSTongSPDB 
 			{
 				cout << "Mua thanh cong!" << endl;
 				SanPhamDaBan x;
@@ -280,7 +267,7 @@ void BanSanPham(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB, int &ton
 	}
 }
 
-void TraHang(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB)
+void TraHang(ListSP &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB)
 {
 	char ch = 'c';
 	while (ch == 'c')
@@ -293,9 +280,9 @@ void TraHang(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB)
 		q = DSSPDB.pHead;
 		while (q != NULL && strcmp(q->infor.TenSPDB, x) != 0)
 			q = q->pnext;
-		if (q != NULL)
+		if (q != NULL) // Xử lý trả hàng
 		{
-			Node* p;
+			NodeSP* p;
 			p = DSSP.pHead;
 			while (p != NULL && strcmp(p->infor.TenSP, x) != 0)
 				p = p->pnext;
@@ -310,7 +297,7 @@ void TraHang(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB)
 			hienco = q->infor.Sldb;
 			if (sl > hienco)
 				cout << "Khach hang chi mua co " << q->infor.Sldb << " san pham nay!" << endl;
-			else
+			else // Cập nhật lại thông tin của DSSPDB và DSTongSPDB
 			{
 				cout << "Tra lai thanh cong!" << endl;
 				q->infor.Sldb = q->infor.Sldb - sl;
@@ -327,7 +314,7 @@ void TraHang(List &DSSP, ListSPDB &DSSPDB, ListTongSPDB &DSTongSPDB)
 	}
 }
 
-void KhuyenMai(ListSPDB &DSSPDB)
+void KhuyenMai(ListSPDB &DSSPDB) // Giảm giá khi mua với số lượng lớn
 {
 	NodeSPDB *q;
 	q = DSSPDB.pHead;
@@ -365,7 +352,7 @@ void HuyDSSPDB(ListSPDB &DSSPDB)
 	DSSPDB.pTail = NULL;
 }
 
-void InThongTinTongSanPhamDB(ListTongSPDB DSTongSPDB)
+void InThongTinTongSanPhamDB(ListTongSPDB DSTongSPDB) // In danh sách các sản phẩm cửa hàng đã bán được
 {
 	NodeTongSPDB *p = DSTongSPDB.pHead;
 	textcolor(10);
@@ -388,6 +375,7 @@ void InThongTinTongSanPhamDB(ListTongSPDB DSTongSPDB)
 		textcolor(15);
 	}
 }
+
 void InDSTongSanPhamDB(ListTongSPDB DSTongSPDB)
 {
 	int w = 60;
@@ -400,14 +388,14 @@ void InDSTongSanPhamDB(ListTongSPDB DSTongSPDB)
 	cout << "So luong" << endl;
 }
 
-void SanPhamBanChayNhat(ListTongSPDB DSTongSPDB)
+void SanPhamBanChayNhat(ListTongSPDB DSTongSPDB) 
 {
 	NodeTongSPDB *p = DSTongSPDB.pHead;
 	int banchay = 0;
 	char best[20];
 	banchay = p->infor.TongSldb;
 	strcpy_s(best, p->infor.TenTongSPDB);
-	while (p != NULL)
+	while (p != NULL) // Tìm số lượng bán được nhiều nhất
 	{
 		if (banchay < p->infor.TongSldb)
 		{
@@ -418,7 +406,7 @@ void SanPhamBanChayNhat(ListTongSPDB DSTongSPDB)
 	}
 	cout << "San pham ban chay nhat cua hang la ";
 	p = DSTongSPDB.pHead;
-	while (p != NULL)
+	while (p != NULL) // Tìm các sản phẩm bán chạy nhất
 	{
 		if (banchay == p->infor.TongSldb)
 		{

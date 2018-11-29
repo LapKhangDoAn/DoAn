@@ -1,18 +1,20 @@
 ﻿#include "pch.h"
 #include "DoAn.h"
 
-void TaoDS(List &DSSP)
+void TaoDS(ListSP &DSSP)
 {
 	DSSP.pHead = NULL;
 	DSSP.pTail = NULL;
 }
-void textcolor(int x)
+
+void textcolor(int x) // Thay đổi màu chữ
 {
 	HANDLE mau;
 	mau = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(mau, x);
 }
-void KiemTraHanSD(List DSSP)
+
+void KiemTraHanSD(ListSP DSSP)
 {
 	textcolor(14);
 	cout << "1.Kiem tra han su dung mot san pham bat ki:" << endl;
@@ -33,9 +35,10 @@ void KiemTraHanSD(List DSSP)
 	}
 	textcolor(15);
 }
-void KiemTraHanSD3(List DSSP)
+
+void KiemTraHanSD3(ListSP DSSP)
 {
-	Node *p = DSSP.pHead;
+	NodeSP *p = DSSP.pHead;
 	int d, m, y;
 	cout << "Nhap ngay hien tai:";
 	cin >> d >> m >> y;
@@ -53,7 +56,8 @@ void KiemTraHanSD3(List DSSP)
 		p = p->pnext;
 	}
 }
-int KiemTraHanSD2(List DSSP, Node *p, int &y, int &m, int &d)
+
+int KiemTraHanSD2(ListSP DSSP, NodeSP *p, int &y, int &m, int &d) // Kiểm tra hạn sử dụng của một sản phẩm 
 {
 	if (p->infor.HanSD->Nam > y)
 		return 1;
@@ -74,10 +78,11 @@ int KiemTraHanSD2(List DSSP, Node *p, int &y, int &m, int &d)
 								return 0;
 						else return 1;
 }
-void KiemTraHanSD1(List DSSP)
+
+void KiemTraHanSD1(ListSP DSSP)
 {
 	textcolor(14);
-	Node* p;
+	NodeSP* p;
 	p = DSSP.pHead;
 	char a[100];
 	cout << "Nhap ten san pham can kiem tra han su dung:";
@@ -88,29 +93,17 @@ void KiemTraHanSD1(List DSSP)
 	cout << "Nhap ngay hien tai:";
 	cin >> d >> m >> y;
 	textcolor(12);
-	if (p->infor.HanSD->Nam > y)
+	int kiemtra = KiemTraHanSD2(DSSP, p, y, m, d);
+	if (kiemtra == 1)
 		cout << "San Pham Con Han Su Dung";
 	else
-		if (p->infor.HanSD->Nam < y)
-			cout << "San Pham Da Het Han Su Dung";
-		else
-			if (p->infor.HanSD->Thang > m)
-				cout << "San Pham Con Han Su Dung";
-			else
-				if (p->infor.HanSD->Thang < m)
-					cout << "San Pham Da Het Han Su Dung";
-				else
-					if (p->infor.HanSD->Ngay > d)
-						cout << "San Pham Con Han Su Dung";
-					else
-						if (p->infor.HanSD->Ngay < d)
-							cout << "San Pham Da Het Han Su Dung";
-						else cout << "San Pham Con Han Su Dung";
+		cout << "San Pham Da Het Han Su Dung";
 	textcolor(15);
 }
-void SapXep(List DSSP)
+
+void SapXep(ListSP DSSP) // Sắp xếp sản phẩm theo giá bán sử dụng thuật toán InterchangeSort
 {
-	Node *p, *q, *min;
+	NodeSP *p, *q, *min;
 	p = DSSP.pHead;
 	SanPham x;
 	while (p != DSSP.pTail)
@@ -129,6 +122,7 @@ void SapXep(List DSSP)
 		p = p->pnext;
 	}
 }
+
 void  ThoiTien(int&tong, int TienKhach)
 {
 	while (TienKhach < tong)
@@ -140,7 +134,7 @@ void  ThoiTien(int&tong, int TienKhach)
 	cout << "Tien thoi: " << tienthoi;
 	if (tienthoi == 0)
 		cout << "\nKhach da tra du tien!" << endl;
-	else
+	else // Gợi ý thối tiền
 	{
 		int dem500d = 0;
 		int dem1k = 0;
@@ -251,11 +245,12 @@ void  ThoiTien(int&tong, int TienKhach)
 		}
 		if (cuckeo != 0)
 		{
-			cout << " Cuc keo" << endl;
+			cout << "Cuc keo" << endl;
 		}
 	}
 }
-void InHoaDon(ListSPDB DSSPDB, int &tong)
+
+void InHoaDon(ListSPDB DSSPDB, int &tong) // In hóa đơn mua hàng
 {
 	int w = 140;
 	tong = 0;
@@ -266,7 +261,8 @@ void InHoaDon(ListSPDB DSSPDB, int &tong)
 	NodeSPDB *p = DSSPDB.pHead;
 	while (p != NULL)
 	{
-		cout << setw(30) << left << p->infor.TenSPDB << setw(30) << p->infor.Sldb << setw(30) << p->infor.GiaBanDB << setw(30) << p->infor.GiaBanDB*p->infor.Sldb << setw(30) << p->infor.GiamGia << endl;
+		cout << setw(30) << left << p->infor.TenSPDB << setw(30) << p->infor.Sldb << setw(30) << p->infor.GiaBanDB;
+		cout << setw(30) << p->infor.GiaBanDB*p->infor.Sldb << setw(30) << p->infor.GiamGia << endl;
 		tong = tong + p->infor.GiaBanDB*p->infor.Sldb - p->infor.GiamGia;
 		p = p->pnext;
 	}
@@ -274,6 +270,7 @@ void InHoaDon(ListSPDB DSSPDB, int &tong)
 	cout << endl;
 	cout << setw(30) << " " << "Tong cong:" << tong << " VND" << endl;
 }
+
 void ThongTinHoaDon(ListSPDB DSSPDB)
 {
 	textcolor(11);
@@ -286,7 +283,8 @@ void ThongTinHoaDon(ListSPDB DSSPDB)
 	cout << setw(30) << left << "Ten san pham";
 	cout << setw(30) << "So luong" << setw(30) << "Gia ban san pham" << setw(30) << "Thanh tien" << setw(30) << "Tien giam" << endl;
 }
-void ThemSP(List&DSSP)
+
+void ThemSP(ListSP &DSSP) // Thêm sản phẩm
 {
 	int them = 1;
 	while (them == 1)
@@ -305,26 +303,27 @@ void ThemSP(List&DSSP)
 		textcolor(15);
 		if (chon == 1)
 		{
-			Node *q = CreateNode(x);
+			NodeSP *q = CreateNode(x);
 			AddHead(DSSP, q);
 		}
 		if (chon == 2)
 		{
-			Node *q = CreateNode(x);
-			Node *p = SearchNode(DSSP);
+			NodeSP *q = CreateNode(x);
+			NodeSP *p = SearchNode(DSSP);
 			InsertAfter(DSSP, p, q, x);
 		}
 		if (chon == 3)
 		{
-			Node *q = CreateNode(x);
+			NodeSP *q = CreateNode(x);
 			AddTail(DSSP, x);
 		}
-		cout << "Nhap 1 de them tiep,0 de ket thuc:";
+		cout << "Nhap 1 de them tiep, 0 de ket thuc:";
 		cin >> them;
 		cin.ignore();
 	}
 }
-void InsertAfter(List&DSSP, Node *p, Node *q, SanPham x)
+
+void InsertAfter(ListSP &DSSP, NodeSP *p, NodeSP *q, SanPham x)
 {
 	if (p != NULL)
 	{
@@ -336,9 +335,10 @@ void InsertAfter(List&DSSP, Node *p, Node *q, SanPham x)
 	else
 		AddTail(DSSP, x);
 }
-Node* SearchNode(List &DSSP)
+
+NodeSP* SearchNode(ListSP &DSSP)
 {
-	Node* p;
+	NodeSP* p;
 	p = DSSP.pHead;
 	cin.ignore();
 	char a[100];
@@ -348,7 +348,8 @@ Node* SearchNode(List &DSSP)
 		p = p->pnext;
 	return p;
 }
-void AddHead(List&DSSP, Node *p)
+
+void AddHead(ListSP &DSSP, NodeSP *p)
 {
 	if (DSSP.pHead == NULL)
 	{
@@ -361,12 +362,13 @@ void AddHead(List&DSSP, Node *p)
 		DSSP.pHead = p;
 	}
 }
-// Xóa Sản Phẩm
-int RemoveX(List&DSSP, char x[])
+
+// Xóa sản phẩm
+int RemoveX(ListSP &DSSP, char x[])
 {
-	Node *p;
+	NodeSP *p;
 	p = DSSP.pHead;
-	Node *q = new Node;
+	NodeSP *q = new NodeSP;
 	int dem = 0;
 	if (DSSP.pHead == NULL)
 		return 0;
@@ -393,9 +395,10 @@ int RemoveX(List&DSSP, char x[])
 	}
 	return 0;
 }
-void RemoveAfter(List &DSSP)
+
+void RemoveAfter(ListSP &DSSP)
 {
-	Node *p;
+	NodeSP *p;
 	p = DSSP.pHead;
 	if (DSSP.pHead == NULL)
 		return;
@@ -416,18 +419,20 @@ void RemoveAfter(List &DSSP)
 		p = p->pnext;
 	}
 }
-void RemoveHead(List&DSSP)
+
+void RemoveHead(ListSP &DSSP)
 {
 	if (DSSP.pHead == NULL)
 		return;
-	Node *p = DSSP.pHead;
+	NodeSP *p = DSSP.pHead;
 	DSSP.pHead = DSSP.pHead->pnext;
 	delete p;
 }
-void TimKiem(List DSSP)
+
+void TimKiem(ListSP DSSP) // Tìm kiếm sản phẩm
 {
 	int w = 130;
-	Node *p;
+	NodeSP *p;
 	SanPham x;
 	int dem = 0;
 	int chon;
@@ -494,7 +499,7 @@ void TimKiem(List DSSP)
 		cin >> mingia;
 		cout << "Nhap gia cao nhat:";
 		cin >> maxgia;
-		Node* p;
+		NodeSP* p;
 		p = DSSP.pHead;
 		while (p != NULL)
 		{
@@ -519,23 +524,26 @@ void TimKiem(List DSSP)
 	}
 
 }
-void InThongTin(List DSSP)
+
+void InThongTin(ListSP DSSP) // In danh sách các sản phẩm đang kinh doanh của cửa hàng
 {
 	int w = 140;
 	InDS(DSSP);
 	for (int i = 0; i < w; i++) cout << "=";
 	cout << endl;
-	Node *p = DSSP.pHead;
+	NodeSP *p = DSSP.pHead;
 	while (p != NULL)
 	{
-		cout << setw(20) << left << p->infor.TenSP << setw(20) << p->infor.Ma << setw(20) << p->infor.GiaBan << setw(20) << p->infor.Sl << setw(20) << p->infor.NhaCC << p->infor.NgaySX->Ngay << "/" << p->infor.NgaySX->Thang << "/" << setw(18) << p->infor.NgaySX->Nam;
+		cout << setw(20) << left << p->infor.TenSP << setw(20) << p->infor.Ma << setw(20) << p->infor.GiaBan << setw(20) << p->infor.Sl;
+		cout << setw(20) << p->infor.NhaCC << p->infor.NgaySX->Ngay << "/" << p->infor.NgaySX->Thang << "/" << setw(18) << p->infor.NgaySX->Nam;
 		cout << p->infor.HanSD->Ngay << "/" << p->infor.HanSD->Thang << "/" << p->infor.HanSD->Nam << endl;
 		p = p->pnext;
 	}
 	for (int i = 0; i < w; i++) cout << "=";
 	cout << endl;
 }
-void InDS(List DSSP)
+
+void InDS(ListSP DSSP)
 {
 	int w = 140;
 	for (int i = 0; i < w; i++) cout << "=";
@@ -544,5 +552,6 @@ void InDS(List DSSP)
 	for (int i = 0; i < w; i++) cout << "=";
 	cout << endl;
 	cout << setw(20) << "Ten san pham";
-	cout << setw(20) << "Ma san pham" << setw(20) << "Gia ban san pham" << setw(20) << "So luong" << setw(20) << "Nha cung cap" << setw(20) << "Ngay san xuat" << setw(20) << "Han su dung" << endl;
+	cout << setw(20) << "Ma san pham" << setw(20) << "Gia ban san pham" << setw(20) << "So luong" << setw(20);
+	cout << "Nha cung cap" << setw(20) << "Ngay san xuat" << setw(20) << "Han su dung" << endl;
 }
